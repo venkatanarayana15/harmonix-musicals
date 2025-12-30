@@ -1,130 +1,54 @@
-import { Link } from "react-router-dom"
-import {
-  FaInstagram,
-  FaYoutube,
-  FaWhatsapp,
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaArrowRight
-} from "react-icons/fa"
+import { Link } from "react-router-dom";
+import { FaInstagram, FaYoutube, FaWhatsapp, FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaMusic } from "react-icons/fa";
+import Button from "./ui/Button";
 
 export default function Footer() {
-  const programs = [
-    "Guitar",
-    "Piano",
-    "Violin",
-    "Vocal",
-    "Music Theory",
-    "Online Classes"
-  ]
+  const currentYear = new Date().getFullYear();
 
   const quickLinks = [
     { label: "Home", to: "/" },
     { label: "Programs", to: "/learning" },
     { label: "About Us", to: "/about" },
-    { label: "Gallery", to: "/gallery" },
     { label: "Contact", to: "/contact" }
-  ]
+  ];
 
   return (
-    <footer className="bg-[#0a0a0a] text-white border-t border-gray-900">
-      <div className="max-w-6xl mx-auto px-6 py-12">
+    <footer className="bg-slate-950 border-t border-white/10 relative overflow-hidden">
+      {/* Decorative gradients */}
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-violet-500 to-transparent opacity-50" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-violet-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-pink-500/10 rounded-full blur-[100px] pointer-events-none" />
 
-        {/* Top Grid */}
-        
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-
-          
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-8 relative z-10">
+        <div className="grid grid-cols-3 lg:grid-cols-5 gap-2 md:gap-10 mb-8 md:mb-12 text-center lg:text-left">
           {/* Brand */}
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
-                🎵
+          <div className="col-span-1 lg:col-span-2 flex flex-col items-center lg:items-start space-y-4">
+            <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex flex-col lg:flex-row items-center justify-center lg:justify-start gap-2 lg:gap-3 group">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-lg group-hover:shadow-violet-500/25 transition-all duration-300 border border-white/10 shrink-0">
+                <img src="/logo.jpg" alt="Harmonix Musicals" className="w-full h-full object-cover" />
               </div>
-              <h3 className="text-xl font-bold">HARMONIX MUSICALS</h3>
-            </div>
-
-            <p className="text-gray-400 text-sm mb-6 leading-relaxed">
-              Igniting musical passion since 2003. Professional training in Guitar,
-              Piano, Violin & Vocals.
+              <span className="text-[10px] sm:text-lg md:text-2xl font-display font-bold bg-gradient-to-r from-white to-slate-400 bg-clip-text text-transparent leading-tight hidden sm:block">
+                Harmonix
+              </span>
+            </Link>
+            <p className="text-slate-400 text-sm md:text-base leading-relaxed max-w-sm mx-auto lg:mx-0 hidden lg:block">
+              Igniting musical passion since 2003. Professional training in Guitar, Piano, Violin & Vocals for students of all ages.
             </p>
-
-            <div className="flex gap-3">
-              <Social icon={<FaInstagram />} href="#" hover="hover:bg-pink-600" />
-              <Social icon={<FaYoutube />} href="#" hover="hover:bg-red-600" />
-              <Social
-                icon={<FaWhatsapp />}
-                href="https://wa.me/919876543210"
-                hover="hover:bg-green-600"
-              />
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-2 sm:gap-4 pt-1 lg:pt-2">
+              <SocialLink icon={<FaInstagram size={14} />} href="#" color="hover:bg-pink-600" />
+              <SocialLink icon={<FaYoutube size={14} />} href="#" color="hover:bg-red-600" />
+              <SocialLink icon={<FaWhatsapp size={14} />} href="https://wa.me/919876543210" color="hover:bg-green-600" />
             </div>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4 text-gray-300">
-              Contact Info
-            </h4>
-
-            <ul className="space-y-4 text-sm text-gray-400">
-              <li className="flex gap-3">
-                <FaMapMarkerAlt className="text-indigo-500 mt-1" />
-                <span>123 Music Street, Mumbai</span>
-              </li>
-
-              <li className="flex gap-3">
-                <FaPhoneAlt className="text-indigo-500" />
-                <a href="tel:+919876543210" className="hover:text-white">
-                  +91 98765 43210
-                </a>
-              </li>
-
-              <li className="flex gap-3">
-                <FaEnvelope className="text-indigo-500" />
-                <a
-                  href="mailto:hello@musicacademy.com"
-                  className="hover:text-white"
-                >
-                  hello@musicacademy.com
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          
-          {/* Programs */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4 text-gray-300">
-              Our Programs
-            </h4>
-            <ul className="space-y-3">
-              {programs.map(program => (
-                <li key={program}>
-                  <Link
-                    to="/learning"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition"
-                  >
-                    <FaArrowRight className="text-xs text-indigo-500" />
-                    {program}
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold text-lg mb-4 text-gray-300">
-              Quick Links
-            </h4>
-            <ul className="space-y-3">
-              {quickLinks.map(link => (
+          <div className="col-span-1 flex flex-col items-center lg:items-start">
+            <h4 className="font-display font-bold text-white text-xs sm:text-lg mb-3 md:mb-6">Links</h4>
+            <ul className="space-y-2 lg:space-y-3">
+              {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.to}
-                    className="text-sm text-gray-400 hover:text-white transition"
-                  >
+                  <Link to={link.to} className="text-xs sm:text-base text-slate-400 hover:text-violet-400 transition-colors flex items-center gap-2 group justify-center lg:justify-start">
+                    <FaArrowRight className="text-xs opacity-0 hidden lg:block -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300" />
                     {link.label}
                   </Link>
                 </li>
@@ -132,90 +56,60 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Contact */}
+          <div className="col-span-1 lg:col-span-2 flex flex-col items-center lg:items-start lg:pl-8">
+            <h4 className="font-display font-bold text-white text-xs sm:text-lg mb-3 md:mb-6">Contact</h4>
+            <ul className="space-y-3 text-slate-400 text-xs sm:text-base md:text-base">
+              <li className="flex flex-col lg:flex-row gap-1 lg:gap-3 items-center lg:items-start justify-center lg:justify-start text-center lg:text-left">
+                <FaMapMarkerAlt className="text-violet-400 shrink-0 lg:mt-1" />
+                <span className="hidden sm:inline">123 Music Street, Bandra West, Mumbai</span>
+                <span className="inline sm:hidden">Bandra, Mumbai</span>
+              </li>
+              <li className="flex flex-col lg:flex-row gap-1 lg:gap-3 items-center justify-center lg:justify-start">
+                <FaPhoneAlt className="text-violet-400 shrink-0" />
+                <a href="tel:+919876543210" className="hover:text-white transition-colors truncate max-w-[140px] sm:max-w-none">+91 98765...</a>
+              </li>
+              <li className="flex flex-col lg:flex-row gap-1 lg:gap-3 items-center justify-center lg:justify-start">
+                <FaEnvelope className="text-violet-400 shrink-0" />
+                <a href="mailto:hello@harmonix.com" className="hover:text-white transition-colors truncate max-w-[140px] sm:max-w-none">hello@...</a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        {/* CTA */}
-        <div className="text-center mb-10">
-          <h4 className="text-2xl font-bold mb-4">
-            Ready to Begin Your Musical Journey?
-          </h4>
-
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              to="/contact"
-              className="px-8 py-3 rounded-full font-semibold
-              bg-gradient-to-r from-indigo-600 to-purple-600
-              hover:from-indigo-700 hover:to-purple-700 transition"
-            >
-              Book Free Trial
+        {/* Newsletter CTA */}
+        <div className="bg-white/5 rounded-2xl p-6 md:p-8 mb-10 border border-white/10 text-center md:text-left">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h4 className="text-lg md:text-xl font-bold text-white mb-2">Start Your Musical Journey Today</h4>
+              <p className="text-slate-400 text-sm md:text-base">Book a free trial class and get a personalized learning roadmap.</p>
+            </div>
+            <Link to="/contact">
+              <Button className="whitespace-nowrap">Book Free Trial</Button>
             </Link>
-
-            <a
-              href="https://wa.me/919876543210"
-              className="px-8 py-3 rounded-full font-semibold
-              border border-gray-700 hover:bg-gray-800 transition
-              flex items-center justify-center gap-2"
-            >
-              <FaWhatsapp />
-              Chat on WhatsApp
-            </a>
           </div>
         </div>
 
-        {/* Newsletter */}
-        <div className="bg-gray-900/50 rounded-xl p-6 text-center mb-10">
-          <h4 className="font-semibold mb-2">Stay Updated</h4>
-          <p className="text-gray-400 text-sm mb-4">
-            Subscribe for music tips, event invites & special offers
-          </p>
-
-          <div className="flex max-w-md mx-auto gap-2">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-1 bg-black border border-gray-800 rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-indigo-500"
-            />
-            <button className="bg-indigo-600 hover:bg-indigo-700 px-6 rounded-lg text-sm font-semibold">
-              Subscribe
-            </button>
-          </div>
-        </div>
-
-        {/* Bottom */}
-        <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
-          <p>© {new Date().getFullYear()} Harmonix Musicals. All rights reserved.</p>
-
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-slate-500 text-center">
+          <p>© {currentYear} Harmonix Musicals. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link to="/privacy" className="hover:text-white">Privacy</Link>
-            <Link to="/terms" className="hover:text-white">Terms</Link>
-            <Link to="/refund" className="hover:text-white">Refund</Link>
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>
-
-      {/* Back to top */}
-      <button
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="fixed bottom-6 right-6 w-12 h-12 rounded-full
-        bg-gradient-to-br from-indigo-600 to-purple-600
-        shadow-lg hover:scale-110 transition z-50"
-        aria-label="Back to top"
-      >
-        ↑
-      </button>
     </footer>
-  )
+  );
 }
 
-/* ---------- Small reusable component ---------- */
-function Social({ icon, href, hover }) {
+function SocialLink({ icon, href, color }) {
   return (
     <a
       href={href}
-      aria-label="social-link"
-      className={`w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center transition ${hover}`}
+      className={`w-8 h-8 sm:w-10 sm:h-10 bg-white/5 rounded-full flex items-center justify-center text-white transition-all duration-300 hover:scale-110 hover:shadow-lg ${color}`}
     >
       {icon}
     </a>
-  )
+  );
 }

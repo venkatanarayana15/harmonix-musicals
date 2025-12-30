@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar"
+import Navbar from "./components/layout/Navbar"
 import Home from "./pages/home"
 import About from "./pages/about"
 import Learning from "./pages/learning"
@@ -8,26 +8,26 @@ import StickyContactBar from "./components/StickyContactBar"
 
 export default function App() {
   return (
-    <div className="bg-black text-white min-h-screen overflow-x-hidden">
-      
+    <div className="bg-slate-950 text-white min-h-screen overflow-x-hidden flex flex-col">
+
       {/* Fixed Navbar */}
       <Navbar />
 
       {/* Content Wrapper */}
-      <main className="pt-16 md:pt-20">
-        <section id="home" className="w-full overflow-x-hidden">
+      <main className="grow pt-20">
+        <section id="home">
           <Home />
         </section>
 
-        <section id="about" className="w-full overflow-x-hidden">
+        <section id="about">
           <About />
         </section>
 
-        <section id="learning" className="w-full overflow-x-hidden">
+        <section id="learning">
           <Learning />
         </section>
 
-        <section id="contact" className="w-full overflow-x-hidden">
+        <section id="contact">
           <Contact />
         </section>
 
