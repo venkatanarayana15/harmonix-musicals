@@ -27,11 +27,11 @@ const instruments = [
 
 export default function Learning() {
   return (
-    <div className="pt-28 pb-20 bg-black min-h-screen text-white">
+    <div className="pt-2 pb-2 bg-black min-h-screen text-white">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-1">
           <h1 className="text-4xl font-bold mb-4">Learning Programs</h1>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Choose your instrument and begin your musical journey with

@@ -71,7 +71,7 @@ export default function Contact() {
   const instruments = ["Guitar", "Piano", "Violin", "Vocals", "Drums", "Bass", "Saxophone", "Other"]
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 pb-20 overflow-hidden">
+    <div className="min-h-screen bg-black text-white pt-2 pb-2 overflow-hidden">
       {/* Background Elements */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-900/10 rounded-full blur-3xl"></div>
@@ -80,7 +80,7 @@ export default function Contact() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-1 animate-fade-in">
           <div className="inline-block mb-4">
             <span className="text-sm font-semibold text-indigo-400 bg-indigo-400/10 px-4 py-2 rounded-full">
               Get In Touch
