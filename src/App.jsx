@@ -4,6 +4,7 @@ import About from "./pages/about"
 import Learning from "./pages/learning"
 import Contact from "./pages/contact"
 import Footer from "./components/Footer"
+import StickyContactBar from "./components/StickyContactBar"
 
 export default function App() {
   return (
@@ -29,6 +30,8 @@ export default function App() {
         <section id="contact" className="w-full overflow-x-hidden">
           <Contact />
         </section>
+
+        <StickyContactBar />
       </main>
 
       {/* Footer */}
