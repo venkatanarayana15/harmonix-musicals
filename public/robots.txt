@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://harmonix-musicals.vercel.app/sitemap.xml
