@@ -98,7 +98,7 @@ export default function Navbar() {
           preload="metadata"
           className="h-10 w-10 md:h-12 md:w-12 rounded-lg object-cover ring-2 ring-white/10"
         /> */}
-        <img src="../img/logo.jpeg" alt="logo" className="h-10 w-10 md:h-12 md:w-12 rounded-lg object-cover ring-2 ring-white/10" />
+        <img src="/img/logo.jpeg" alt="logo" className="h-10 w-10 md:h-12 md:w-12 rounded-lg object-cover ring-2 ring-white/10" />
 
 
         {/* Nav Links */}
