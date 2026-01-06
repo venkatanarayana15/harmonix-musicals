@@ -6,13 +6,13 @@ const CONTACTS = [
     label: "WhatsApp",
     href: "https://wa.me/919876543210",
     icon: FaWhatsapp,
-    color: "bg-green-500",
+    color: "bg-green-600",
   },
   {
     label: "Instagram",
     href: "https://instagram.com/harmonixmusicals",
     icon: FaInstagram,
-    color: "bg-pink-500",
+    color: "bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500",
   },
   {
     label: "Call",
@@ -24,7 +24,7 @@ const CONTACTS = [
 
 export default function StickyContactBar() {
   return (
-    <div className="fixed z-[9998] right-4 bottom-4">
+    <div className="fixed z-[9998] right-4 bottom-24 md:bottom-8">
       <div className="flex flex-col gap-3">
         {CONTACTS.map(({ label, href, icon: Icon, color }, index) => (
           <motion.a

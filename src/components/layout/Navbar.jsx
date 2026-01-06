@@ -1,229 +1,292 @@
-import { useState, useEffect, useCallback } from "react"
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion"
-import { HiMenuAlt3, HiX } from "react-icons/hi"
+import { useState, useEffect, useCallback, useRef } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { HiHome, HiInformationCircle, HiAcademicCap, HiMail, HiPhotograph, HiMenuAlt3, HiX } from "react-icons/hi"
+import { useLocation, useNavigate } from "react-router-dom"
 import Button from "../ui/Button"
 
-const SECTIONS = ["home", "about", "learning", "contact"]
+const SECTIONS = ["home", "about", "learning", "gallery", "contact"]
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false)
-    const [scrolled, setScrolled] = useState(false)
-    const [activeSection, setActiveSection] = useState("home")
+  const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState("home")
+  const [isMobile, setIsMobile] = useState(false)
 
-    const { scrollYProgress } = useScroll()
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 120,
-        damping: 20,
-        mass: 0.4,
-    })
+  // State for hiding navbar on scroll (if desired, currently enabled by user code paste)
+  const [headerHidden, setHeaderHidden] = useState(false)
+  const [bottomHidden, setBottomHidden] = useState(false)
+  const lastScrollY = useRef(0)
 
-    /* ---------- SCROLL SPY ---------- */
-    useEffect(() => {
-        let ticking = false
+  // Prevent spy from overriding click selection temporarily
+  const isClickingRef = useRef(false)
+  const clickTimeoutRef = useRef(null)
 
-        const handleScroll = () => {
-            if (ticking) return
-            ticking = true
+  // Hooks for routing
+  const location = useLocation()
+  const navigate = useNavigate()
+  const isHomePage = location.pathname === "/"
 
-            requestAnimationFrame(() => {
-                const scrollY = window.scrollY
-                setScrolled(scrollY > 10)
+  // Detect mobile screen
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(typeof window !== 'undefined' ? window.innerWidth < 768 : false)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
-                // Bottom of page detection
-                if (window.innerHeight + scrollY >= document.body.offsetHeight - 20) {
-                    setActiveSection(SECTIONS[SECTIONS.length - 1])
-                } else {
-                    for (const id of SECTIONS) {
-                        const el = document.getElementById(id)
-                        if (!el) continue
-                        const top = el.offsetTop
-                        const bottom = top + el.offsetHeight
-                        
-                        // Mobile detection with larger threshold
-                        const isMobile = window.innerWidth < 768
-                        const offset = isMobile ? 70 : 80
-                        
-                        if (scrollY + offset >= top && scrollY + offset < bottom) {
-                            setActiveSection(id)
-                            break
-                        }
-                    }
-                }
+  // Update active section based on route first
+  useEffect(() => {
+    if (!isHomePage && location.pathname === "/gallery") {
+      setActiveSection("gallery")
+    }
+  }, [location.pathname, isHomePage])
 
-                ticking = false
-            })
+  /* ---------- SCROLL SPY & HIDE/SHOW NAV ---------- */
+  useEffect(() => {
+    // 1. IntersectionObserver for Active Section (Spying)
+    let observer = null
+    if (isHomePage && typeof IntersectionObserver !== "undefined") {
+      const options = {
+        root: null,
+        // Adjust rootMargin to trigger active state earlier/later
+        // Mobile bottom nav needs different offset than desktop top nav
+        rootMargin: isMobile ? "-40% 0px -40% 0px" : "-100px 0px -40% 0px",
+        threshold: 0,
+      }
+
+      observer = new IntersectionObserver((entries) => {
+        // If we are currently handling a click, ignore spy updates to prevent flicker
+        if (isClickingRef.current) return
+
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id
+            if (id) setActiveSection(id)
+          }
+        })
+      }, options)
+
+      SECTIONS.forEach((id) => {
+        const el = document.getElementById(id)
+        if (el) observer.observe(el)
+      })
+    }
+
+    // 2. Scroll Handler for hiding/showing navbar
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const y = window.scrollY
+        const delta = y - lastScrollY.current
+        lastScrollY.current = y
+
+        // Basic scrolled flag for header background style
+        setScrolled(y > 20)
+
+        // Hide/Show logic (User re-added this in their edit)
+        // Only hide if scrolling DOWN and relatively far down
+        if (Math.abs(delta) > 5) { // ignore noise
+          if (delta > 0 && y > 100) {
+            setHeaderHidden(true)
+            if (isMobile) setBottomHidden(true)
+          } else {
+            setHeaderHidden(false)
+            if (isMobile) setBottomHidden(false)
+          }
         }
 
-        window.addEventListener("scroll", handleScroll, { passive: true })
-        handleScroll()
-        return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
+        ticking = false
+      })
+    }
 
-    /* ---------- SCROLL TO SECTION ---------- */
-    const scrollToSection = useCallback((id) => {
-        setIsOpen(false)
-        const el = document.getElementById(id)
-        if (!el) return
+    window.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
 
-        const isMobile = window.innerWidth < 768
-        const offset = isMobile ? 70 : 80
-        
-        window.scrollTo({
-            top: el.offsetTop - offset,
-            behavior: "smooth",
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      if (observer) {
+        SECTIONS.forEach((id) => {
+          const el = document.getElementById(id)
+          if (el) observer.unobserve(el)
         })
-    }, [])
+        observer.disconnect()
+      }
+    }
+  }, [isMobile, isHomePage])
 
-    const navLinks = [
-        { name: "Home", id: "home" },
-        { name: "About", id: "about" },
-        { name: "Programs", id: "learning" },
-        { name: "Contact", id: "contact" },
-    ]
 
+  /* ---------- NAVIGATION HANDLER ---------- */
+  const handleNavigation = useCallback((id) => {
+    setIsOpen(false)
+
+    // Optimistic update
+    setActiveSection(id)
+
+    // Disable spy temporarily so it doesn't revert active state while scrolling
+    isClickingRef.current = true
+    if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current)
+    clickTimeoutRef.current = setTimeout(() => {
+      isClickingRef.current = false
+    }, 1000)
+
+    // Special case: Gallery Link
+    if (id === "gallery") {
+      navigate("/gallery")
+      window.scrollTo(0, 0)
+      return
+    }
+
+    // For other links (Home, About, etc.)
+    if (!isHomePage) {
+      // Navigate to home and pass the target ID in state
+      // This tells Landing.jsx to scroll immediately on mount
+      navigate("/", { state: { targetId: id } })
+    } else {
+      // Already on home
+      const el = document.getElementById(id)
+      if (el) {
+        // Offset: 
+        // Mobile: just a bit of padding (20px)
+        // Desktop: clear the fixed header (90px)
+        const offset = isMobile ? 20 : 90
+
+        // Scroll Behavior:
+        // PC: smooth
+        // Mobile: auto (instant)
+        const behavior = isMobile ? "auto" : "smooth"
+
+        window.scrollTo({
+          top: el.offsetTop - offset,
+          behavior: behavior,
+          left: 0
+        })
+      }
+    }
+  }, [isHomePage, isMobile, navigate])
+
+  const navLinks = [
+    { name: "Home", id: "home", icon: <HiHome /> },
+    { name: "About", id: "about", icon: <HiInformationCircle /> },
+    { name: "Programs", id: "learning", icon: <HiAcademicCap /> },
+    { name: "Gallery", id: "gallery", icon: <HiPhotograph /> },
+    { name: "Contact", id: "contact", icon: <HiMail /> },
+  ]
+
+  // ========== DESKTOP ==========
+  if (!isMobile) {
     return (
-        <header className="fixed inset-x-0 top-0 z-50">
-            {/* Scroll progress */}
-            <motion.div
-                className="h-[3px] origin-left bg-gradient-to-r from-violet-400 via-indigo-400 to-pink-500"
-                style={{ scaleX }}
-            />
+      <header
+        className={`fixed top-0 inset-x-0 z-50 transform transition-transform duration-300 ease-in-out ${headerHidden ? '-translate-y-24' : 'translate-y-0'} ${scrolled || !isHomePage
+            ? "bg-white/90 backdrop-blur-xl border-b shadow-sm"
+            : "bg-transparent"
+          }`}
+      >
+        <nav className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between h-20">
 
-            <nav
-                className={`
-          transition-all duration-300
-          ${scrolled
-                        ? "bg-black/98 backdrop-blur-xl border-b border-white/20"
-                        : "bg-black/95 backdrop-blur-lg"}
-        `}
+            {/* DESKTOP LOGO */}
+            <div
+              onClick={() => handleNavigation("home")}
+              className="flex items-center gap-3 cursor-pointer group"
             >
-                <div className="h-16 md:h-20 flex items-center">
-                    <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gray-900 blur-lg opacity-20 group-hover:opacity-40 transition-opacity" />
+                <img
+                  src="/logo.jpg"
+                  alt="Harmonix Musicals"
+                  className="relative w-10 h-10 rounded-xl object-cover border border-white/20 shadow-lg"
+                />
+              </div>
+              <div>
+                <div className="text-lg font-bold text-gray-900 tracking-tight group-hover:text-gray-700 transition-colors">HARMONIX</div>
+                <div className="text-[10px] font-bold tracking-widest text-gray-500 uppercase">Musicals</div>
+              </div>
+            </div>
 
-                        {/* Logo - Larger on Mobile */}
-                        <div
-                            role="button"
-                            tabIndex={0}
-                            onClick={() => scrollToSection("home")}
-                            className="flex items-center gap-3 cursor-pointer"
-                        >
-                            <img
-                                src="/logo.jpg"
-                                alt="Harmonix Musicals"
-                                className="h-12 w-12 md:h-14 md:w-14 rounded-xl border-2 border-white/30 shadow-lg"
-                            />
-                            <div className="leading-tight">
-                                <p className="text-xl md:text-2xl font-extrabold bg-gradient-to-r from-violet-400 to-pink-400 bg-clip-text text-transparent">
-                                    Harmonix
-                                </p>
-                                <p className="text-xs md:text-sm tracking-widest text-slate-300">
-                                    MUSICALS
-                                </p>
-                            </div>
-                        </div>
+            {/* DESKTOP NAVIGATION */}
+            <div className="flex items-center gap-2 bg-white/50 backdrop-blur-md px-2 py-1.5 rounded-full border border-white/40 shadow-sm">
+              {navLinks.map(link => (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavigation(link.id)}
+                  className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ease-out
+                                        ${activeSection === link.id
+                      ? "text-gray-900"
+                      : "text-gray-500 hover:text-gray-900 hover:bg-white/50"
+                    }`}
+                >
+                  {activeSection === link.id && (
+                    <motion.div
+                      layoutId="activePill"
+                      className="absolute inset-0 bg-white shadow-sm border border-gray-300 rounded-full"
+                      transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
+                    />
+                  )}
+                  <span className="relative z-10 text-lg">{link.icon}</span>
+                  <span className="relative z-10 text-sm font-medium">{link.name}</span>
+                </button>
+              ))}
+            </div>
 
-                        {/* Desktop nav */}
-                        <div className="hidden md:flex items-center gap-8">
-                            {navLinks.map(link => (
-                                <button
-                                    key={link.id}
-                                    onClick={() => scrollToSection(link.id)}
-                                    className={`text-lg sm:text-xl font-semibold transition-colors px-3 py-2 rounded-lg
-                    ${activeSection === link.id 
-                        ? "text-white bg-gradient-to-r  from-violet-400 via-indigo-400 to-pink-500" 
-                        : "text-slate-300 hover:text-white hover:bg-white/5"}`}
-                                >
-                                    {link.name}
-                                </button>
-                            ))}
-                            <Button 
-                                onClick={() => scrollToSection("contact")}
-                                className="text-lg sm:text-xl px-6 py-3 font-bold"
-                            >
-                                Join Now
-                            </Button>
-                        </div>
-
-                        {/* Mobile toggle - Larger */}
-                        <button
-                            onClick={() => setIsOpen(p => !p)}
-                            className="md:hidden p-3 rounded-xl hover:bg-white/10 active:bg-white/20"
-                            aria-label="Toggle menu"
-                        >
-                            {isOpen ? <HiX size={32} /> : <HiMenuAlt3 size={32} />}
-                        </button>
-                    </div>
-                </div>
-
-                {/* Mobile menu - Full Screen */}
-                <AnimatePresence>
-                    {isOpen && (
-                        <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl z-40 pt-20"
-                        >
-                            <div className="h-full flex flex-col px-6 pb-6">
-                                {/* Menu Header */}
-                                <div className="mb-8 border-b border-white/10 pb-6">
-                                    <h2 className="text-2xl font-bold text-white">Menu</h2>
-                                    <p className="text-gray-400 mt-1">Navigate to section</p>
-                                </div>
-
-                                {/* Navigation Links - Full Height */}
-                                <div className="flex-1 space-y-3">
-                                    {navLinks.map(link => (
-                                        <button
-                                            key={link.id}
-                                            onClick={() => scrollToSection(link.id)}
-                                            className={`
-                                                w-full text-left
-                                                px-6 py-5
-                                                rounded-2xl
-                                                text-xl font-semibold
-                                                flex items-center justify-between
-                                                transition-all duration-200
-                                                active:scale-98
-                                                ${activeSection === link.id
-                                                    ? "bg-gradient-to-r from-violet-600/30 to-pink-600/30 text-white border-2 border-white/20"
-                                                    : "text-slate-300 bg-white/5 hover:bg-white/10"}
-                                            `}
-                                        >
-                                            <span>{link.name}</span>
-                                            {activeSection === link.id && (
-                                                <div className="flex items-center gap-2">
-                                                    <span className="text-sm text-violet-300">Active</span>
-                                                    <span className="h-4 w-4 rounded-full bg-gradient-to-r from-violet-400 to-pink-400 animate-pulse" />
-                                                </div>
-                                            )}
-                                        </button>
-                                    ))}
-                                </div>
-
-                                {/* Mobile CTA Button */}
-                                <div className="mt-auto pt-6 border-t border-white/10">
-                                    <Button
-                                        className="w-full text-xl py-5 font-bold rounded-2xl shadow-2xl shadow-violet-500/30"
-                                        onClick={() => scrollToSection("contact")}
-                                    >
-                                        🎵 Start Learning
-                                    </Button>
-                                    
-                                    <button
-                                        onClick={() => setIsOpen(false)}
-                                        className="w-full mt-4 py-4 text-lg text-gray-400 hover:text-white"
-                                    >
-                                        Close Menu
-                                    </button>
-                                </div>
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </nav>
-        </header>
+            {/* DESKTOP CTA */}
+            <Button
+              onClick={() => handleNavigation("contact")}
+              variant="primary"
+              size="md"
+            >
+              Join Now
+            </Button>
+          </div>
+        </nav>
+      </header>
     )
+  }
+
+  // ========== MOBILE ==========
+  return (
+    <>
+      {/* MOBILE BOTTOM NAV - Unified Sticky Bar */}
+      <div className={`fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t transform transition-transform duration-300 ease-in-out ${bottomHidden ? 'translate-y-24' : 'translate-y-0'}`}>
+        <div className="shadow-sm">
+          <div className="flex items-center justify-around px-2 py-3">
+            {navLinks.map(link => {
+              const isActive = activeSection === link.id;
+              return (
+                <button
+                  key={link.id}
+                  onClick={() => handleNavigation(link.id)}
+                  className={`flex flex-col items-center justify-center p-2 rounded-xl transition-all duration-300 ease-out w-full active:scale-90
+                                        ${isActive ? "text-white" : "text-gray-500 hover:text-gray-300"}`}
+                >
+                  <div className={`mb-1 transition-transform duration-300 ease-out ${isActive ? "-translate-y-1" : ""}`}>
+                    <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full transition-colors duration-300
+                      ${isActive ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
+                      {link.icon}
+                    </div>
+                  </div>
+                  <span className={`text-[10px] font-medium transition-opacity duration-300 ease-out ${isActive ? "opacity-100 text-indigo-600" : "opacity-0 hidden text-gray-700"}`}>
+                    {link.name}
+                  </span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="mobileIndicator"
+                      className="absolute bottom-1 w-2 h-2 bg-indigo-600 rounded-full"
+                      transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}
+                    />
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* SPACER for Mobile ensures content isn't covered */}
+      <div className="h-20 md:hidden" />
+    </>
+  )
 }
 
 export default Navbar

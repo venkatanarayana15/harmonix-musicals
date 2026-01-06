@@ -9,43 +9,49 @@ const Button = ({
     isLoading = false,
     ...props
 }) => {
-    const baseStyles = "relative inline-flex items-center justify-center font-display font-medium rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden group";
-
+    // Premium styling variants
     const variants = {
-        primary: "bg-linear-to-r from-violet-600 to-pink-600 hover:opacity-90 text-white shadow-lg shadow-violet-500/20",
-        secondary: "bg-white/10 text-white backdrop-blur-md border border-white/20 hover:bg-white/20 focus:ring-white/30",
-        ghost: "text-slate-300 hover:text-white hover:bg-white/5 focus:ring-white/20",
-        outline: "border-2 border-violet-500 text-violet-400 hover:bg-violet-500/10 focus:ring-violet-500"
+        primary: "bg-gray-900 text-white border border-transparent shadow-[0_4px_14px_0_rgba(0,0,0,0.2)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.23)] hover:bg-black",
+        secondary: "bg-white text-gray-900 border border-gray-200 shadow-sm hover:bg-gray-50 hover:border-gray-300",
+        ghost: "text-gray-600 hover:text-gray-900 hover:bg-gray-100/50",
+        outline: "bg-transparent border-2 border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white",
+        glass: "backdrop-blur-md bg-white/10 border border-white/20 text-white hover:bg-white/20"
     };
 
     const sizes = {
-        sm: "px-4 py-2 text-sm",
-        md: "px-6 py-3 text-base",
-        lg: "px-8 py-4 text-lg"
+        sm: "px-3 py-1.5 text-xs font-semibold rounded-lg",
+        md: "px-5 py-2.5 text-sm font-semibold rounded-xl",
+        lg: "px-7 py-3.5 text-base font-bold rounded-2xl"
     };
 
     return (
         <motion.button
-            whileHover={{ scale: 1.02 }}
+            whileHover={{ scale: 1.02, y: -1 }}
             whileTap={{ scale: 0.98 }}
-            className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+            className={`
+                relative inline-flex items-center justify-center 
+                font-display transition-all duration-300 
+                disabled:opacity-50 disabled:cursor-not-allowed 
+                overflow-hidden group
+                ${variants[variant]} ${sizes[size]} ${className}
+            `}
             disabled={isLoading}
             {...props}
         >
-            {/* Shine effect for primary button */}
+            {/* Shimmer Effect for Primary Buttons */}
             {variant === 'primary' && (
-                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]" />
+                <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/10 to-transparent z-10" />
             )}
 
             {isLoading ? (
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-            ) : Icon && (
-                <Icon className={`mr-2 ${size === 'lg' ? 'w-6 h-6' : 'w-5 h-5'}`} />
-            )}
-            <span className="relative z-10">{children}</span>
+                <div className="mr-2 animate-spin rounded-full h-4 w-4 border-b-2 border-current" />
+            ) : Icon ? (
+                <Icon className={`mr-2 ${size === 'lg' ? 'text-lg' : 'text-base'}`} />
+            ) : null}
+
+            <span className="relative z-20 flex items-center gap-2">
+                {children}
+            </span>
         </motion.button>
     );
 };
