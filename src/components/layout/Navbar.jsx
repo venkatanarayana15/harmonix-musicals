@@ -104,12 +104,7 @@ const Navbar = () => {
       isClickingRef.current = false
     }, 1000)
 
-    // Special case: Gallery Link
-    if (id === "gallery") {
-      navigate("/gallery")
-      window.scrollTo(0, 0)
-      return
-    }
+
 
     // For other links (Home, About, etc.)
     if (!isHomePage) {
