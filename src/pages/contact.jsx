@@ -113,7 +113,7 @@ export default function Contact() {
                 Studio Address
               </h4>
               <p className="text-xs text-gray-400 leading-relaxed">
-                123 Music Street, Jubilee Hills, Hyderabad
+                123 Music Avenue, Anna Nagar, Chennai
                 <br />
                 Near Metro Station
               </p>

@@ -12,11 +12,6 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState("home")
   const [isMobile, setIsMobile] = useState(false)
 
-  // State for hiding navbar on scroll (if desired, currently enabled by user code paste)
-  const [headerHidden, setHeaderHidden] = useState(false)
-  const [bottomHidden, setBottomHidden] = useState(false)
-  const lastScrollY = useRef(0)
-
   // Prevent spy from overriding click selection temporarily
   const isClickingRef = useRef(false)
   const clickTimeoutRef = useRef(null)
@@ -41,21 +36,17 @@ const Navbar = () => {
     }
   }, [location.pathname, isHomePage])
 
-  /* ---------- SCROLL SPY & HIDE/SHOW NAV ---------- */
+  /* ---------- SCROLL SPY ---------- */
   useEffect(() => {
-    // 1. IntersectionObserver for Active Section (Spying)
     let observer = null
     if (isHomePage && typeof IntersectionObserver !== "undefined") {
       const options = {
         root: null,
-        // Adjust rootMargin to trigger active state earlier/later
-        // Mobile bottom nav needs different offset than desktop top nav
         rootMargin: isMobile ? "-40% 0px -40% 0px" : "-100px 0px -40% 0px",
         threshold: 0,
       }
 
       observer = new IntersectionObserver((entries) => {
-        // If we are currently handling a click, ignore spy updates to prevent flicker
         if (isClickingRef.current) return
 
         entries.forEach((entry) => {
@@ -72,31 +63,13 @@ const Navbar = () => {
       })
     }
 
-    // 2. Scroll Handler for hiding/showing navbar
+    // Scroll background effect
     let ticking = false
     const onScroll = () => {
       if (ticking) return
       ticking = true
       requestAnimationFrame(() => {
-        const y = window.scrollY
-        const delta = y - lastScrollY.current
-        lastScrollY.current = y
-
-        // Basic scrolled flag for header background style
-        setScrolled(y > 20)
-
-        // Hide/Show logic (User re-added this in their edit)
-        // Only hide if scrolling DOWN and relatively far down
-        if (Math.abs(delta) > 5) { // ignore noise
-          if (delta > 0 && y > 100) {
-            setHeaderHidden(true)
-            if (isMobile) setBottomHidden(true)
-          } else {
-            setHeaderHidden(false)
-            if (isMobile) setBottomHidden(false)
-          }
-        }
-
+        setScrolled(window.scrollY > 20)
         ticking = false
       })
     }
@@ -178,9 +151,9 @@ const Navbar = () => {
   if (!isMobile) {
     return (
       <header
-        className={`fixed top-0 inset-x-0 z-50 transform transition-transform duration-300 ease-in-out ${headerHidden ? '-translate-y-24' : 'translate-y-0'} ${scrolled || !isHomePage
-            ? "bg-white/90 backdrop-blur-xl border-b shadow-sm"
-            : "bg-transparent"
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || !isHomePage
+          ? "bg-white/90 backdrop-blur-xl border-b shadow-sm"
+          : "bg-transparent"
           }`}
       >
         <nav className="max-w-7xl mx-auto px-6">
@@ -248,7 +221,7 @@ const Navbar = () => {
   return (
     <>
       {/* MOBILE BOTTOM NAV - Unified Sticky Bar */}
-      <div className={`fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t transform transition-transform duration-300 ease-in-out ${bottomHidden ? 'translate-y-24' : 'translate-y-0'}`}>
+      <div className="fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t">
         <div className="shadow-sm">
           <div className="flex items-center justify-around px-2 py-3">
             {navLinks.map(link => {
