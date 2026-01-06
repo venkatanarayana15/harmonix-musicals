@@ -42,7 +42,7 @@ const Navbar = () => {
     if (isHomePage && typeof IntersectionObserver !== "undefined") {
       const options = {
         root: null,
-        rootMargin: isMobile ? "-40% 0px -40% 0px" : "-100px 0px -40% 0px",
+        rootMargin: isMobile ? "-30% 0px -65% 0px" : "-100px 0px -40% 0px",
         threshold: 0,
       }
 
@@ -104,8 +104,6 @@ const Navbar = () => {
       isClickingRef.current = false
     }, 1000)
 
-
-
     // For other links (Home, About, etc.)
     if (!isHomePage) {
       // Navigate to home and pass the target ID in state
@@ -125,8 +123,11 @@ const Navbar = () => {
         // Mobile: auto (instant)
         const behavior = isMobile ? "auto" : "smooth"
 
+        const elementPosition = el.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - offset
+
         window.scrollTo({
-          top: el.offsetTop - offset,
+          top: offsetPosition,
           behavior: behavior,
           left: 0
         })

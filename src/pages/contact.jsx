@@ -9,31 +9,32 @@ import PageContainer from "../components/layout/PageContainer"
 import Input from "../components/ui/Input"
 import Button from "../components/ui/Button"
 import Card from "../components/ui/Card"
+import { CONTACT } from "../components/constant/contact"
 
 const contactInfo = [
   {
     icon: <FaPhoneAlt />,
     title: "Call",
-    link: "tel:+919876543210",
-    color: "text-gray-400",
+    link: CONTACT.phone,
+    color: "text-red-400",
   },
   {
     icon: <FaWhatsapp />,
     title: "WhatsApp",
-    link: "https://wa.me/919876543210",
-    color: "text-gray-400",
+    link: CONTACT.whatsapp,
+    color: "text-green-400",
   },
   {
     icon: <FaEnvelope />,
     title: "Email",
-    link: "mailto:hello@harmonix.com",
-    color: "text-gray-400",
+    link: CONTACT.email,
+    color: "text-blue-400",
   },
   {
     icon: <FaMapMarkerAlt />,
     title: "Visit",
-    link: "https://maps.google.com",
-    color: "text-gray-400",
+    link: CONTACT.location,
+    color: "text-red-400",
   },
 ]
 
