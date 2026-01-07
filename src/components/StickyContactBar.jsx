@@ -1,22 +1,23 @@
 import { motion } from "framer-motion"
 import { FaWhatsapp, FaInstagram, FaPhoneAlt } from "react-icons/fa"
+import { CONTACT } from "./constant/contact"
 
 const CONTACTS = [
   {
     label: "WhatsApp",
-    href: "https://wa.me/919876543210",
+    href: CONTACT.whatsapp,
     icon: FaWhatsapp,
     color: "bg-green-600",
   },
   {
     label: "Instagram",
-    href: "https://instagram.com/harmonixmusicals",
+    href: CONTACT.instagram,
     icon: FaInstagram,
     color: "bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500",
   },
   {
     label: "Call",
-    href: "tel:+919876543210",
+    href: CONTACT.phone.startsWith("+") ? `tel:${CONTACT.phone}` : `tel:+91${CONTACT.phone}`,
     icon: FaPhoneAlt,
     color: "bg-blue-500",
   }
@@ -24,7 +25,7 @@ const CONTACTS = [
 
 export default function StickyContactBar() {
   return (
-    <div className="fixed z-[9998] right-4 bottom-24 md:bottom-8">
+    <div className="fixed z-[9998] right-4 bottom-30 md:bottom-8">
       <div className="flex flex-col gap-3">
         {CONTACTS.map(({ label, href, icon: Icon, color }, index) => (
           <motion.a
@@ -39,7 +40,7 @@ export default function StickyContactBar() {
             whileTap={{ scale: 0.9 }}
             className={`
               ${color}
-              w-14 h-14 md:w-16 md:h-16
+              w-10 h-10 md:w-16 md:h-16
               flex items-center justify-center
               rounded-full
               text-white text-3xl md:text-2xl

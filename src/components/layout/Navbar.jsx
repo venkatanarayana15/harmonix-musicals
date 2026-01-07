@@ -10,7 +10,13 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => {
+    try {
+      return typeof window !== 'undefined' ? window.innerWidth < 768 : false
+    } catch (e) {
+      return false
+    }
+  })
 
   // Prevent spy from overriding click selection temporarily
   const isClickingRef = useRef(false)
@@ -232,10 +238,10 @@ const Navbar = () => {
                   <div className={`mb-1 transition-transform duration-300 ease-out ${isActive ? "-translate-y-1" : ""}`}>
                     <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full transition-colors duration-300
                       ${isActive ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
-                      {link.icon}
+                      <span className="text-3xl">{link.icon}</span>
                     </div>
                   </div>
-                  <span className={`text-[10px] font-medium transition-opacity duration-300 ease-out ${isActive ? "opacity-100 text-indigo-600" : "opacity-0 hidden text-gray-700"}`}>
+                  <span className={`text-[12px] font-medium transition-opacity duration-300 ease-out ${isActive ? "opacity-100 text-indigo-600" : "opacity-0 hidden text-gray-700"}`}>
                     {link.name}
                   </span>
                   {isActive && (

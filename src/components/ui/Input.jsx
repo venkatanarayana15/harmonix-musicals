@@ -4,20 +4,20 @@ const Input = ({ label, error, className = '', ...props }) => {
     return (
         <div className={`flex flex-col space-y-2 ${className}`}>
             {label && (
-                <label className="text-sm font-medium text-gray-700 ml-1">
+                <label className="text-sm font-medium text-gray-200 ml-1">
                     {label}
                 </label>
             )}
-            <div className="relative group">
+                        <div className="relative group">
                 <input
-                    className={`
-            w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 
-            text-white placeholder:text-gray-500
-            focus:outline-none focus:ring-2 focus:ring-gray-600/50 focus:border-gray-600/50
-            transition-all duration-300 group-hover:bg-white/10
-            disabled:opacity-50 disabled:cursor-not-allowed
-            ${error ? 'border-red-500 focus:ring-red-500/50' : ''}
-          `}
+                                        className={`
+                        w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 
+                        text-white placeholder:text-gray-500
+                        focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50
+                        transition-all duration-300 group-hover:bg-white/10
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                        ${error ? 'border-red-500 focus:ring-red-500/50' : ''}
+                    `}
                     {...props}
                 />
                 <div className="absolute inset-0 rounded-xl bg-linear-to-r from-gray-900/10 to-gray-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />

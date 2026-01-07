@@ -144,16 +144,17 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="text-gray-900 overflow-x-hidden font-sans">
+    <div className="text-gray-900 overflow-x-hidden font-sans min-h-screen">
 
       {/* ---------------- HERO SECTION ---------------- */}
       <section
         id="hero"
         ref={heroRef}
-        className="relative min-h-[100dvh] flex flex-col items-center justify-center px-4 overflow-hidden pt-20 md:pt-0"
+        className=" flex flex-col items-center justify-center px-4 overflow-hidden pt-0 md:pt-17 -mt-4 "
       >
         {/* Dynamic Background Elements */}
-        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        {/* Decorative background - hidden on small screens to prevent overflow */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none hidden md:block">
           <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-200/40 rounded-full blur-[100px] mix-blend-multiply animate-float" />
           <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-blue-200/40 rounded-full blur-[100px] mix-blend-multiply animate-float delay-1000" />
           <div className="absolute top-[30%] left-[40%] w-[300px] h-[300px] bg-pink-200/30 rounded-full blur-[80px] mix-blend-multiply animate-float delay-2000" />
@@ -170,8 +171,8 @@ export default function Home() {
             className="mb-8 relative group"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-            <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full p-1 bg-gradient-to-br from-white to-gray-200 shadow-2xl">
-              <img src="/logo.jpg" alt="Harmonix Logo" className="w-full h-full rounded-full object-cover border-4 border-white" />
+            <div className="relative w-34 h-34 md:w-32 md:h-32 mx-auto rounded-full p-1 bg-gradient-to-br from-white to-gray-200 shadow-2xl">
+              <img src="/logo.jpg" alt="Harmonix Logo" className="w-full h-full rounded-full object-cover border-2 border-white" />
             </div>
           </motion.div>
 
@@ -193,7 +194,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 leading-none tracking-tight"
+            className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-black mb-6 leading-tight tracking-tight"
           >
             <span className="block text-gray-900 mb-2 drop-shadow-sm">Find Your</span>
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 animate-gradient-x bg-[length:200%_auto]">
@@ -215,11 +216,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row w-full max-w-md gap-4 justify-center"
+            className="flex flex-col sm:flex-row w-full max-w-md gap-4 justify-center mx-auto"
           >
             <Button
               size="lg"
-              className="w-full shadow-xl shadow-purple-900/20"
+              className="w-full shadow-xl shadow-purple-900/20 cursor-pointer"
               onClick={() => scrollToSection("learning-preview")}
             >
               Explore Programs
@@ -227,7 +228,7 @@ export default function Home() {
             <Button
               size="lg"
               variant="outline"
-              className="w-full bg-white/50 backdrop-blur-sm border-2"
+              className="w-full bg-white/50 backdrop-blur-sm border-2 cursor-pointer"
               onClick={() => scrollToSection("contact")}
             >
               Book Free Demo
@@ -239,10 +240,10 @@ export default function Home() {
       {/* ---------------- PROGRAMS PREVIEW ---------------- */}
       <section
         id="learning-preview"
-        className="py-20 md:py-32 px-4 relative"
+        className="pt-12 pb-4 md:pt-20 md:pb-6 px-4 relative"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-5xl font-black mb-4">
               World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Training</span>
             </h2>
@@ -261,7 +262,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-2">
             <Link to="/learning">
               <button className="group inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors">
                 <span>VIEW FULL CURRICULUM</span>
@@ -273,7 +274,7 @@ export default function Home() {
       </section>
 
       {/* ---------------- STATS SECTION ---------------- */}
-      <section className="py-20 bg-gray-50/50 border-y border-white/50 relative overflow-hidden">
+      <section className="py-2 md:py-2 bg-gray-50/50 border-y border-white/50 relative overflow-hidden">
         {/* Decorative pattern */}
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#4b5563_1px,transparent_1px)] [background-size:16px_16px]" />
 
@@ -287,11 +288,11 @@ export default function Home() {
       </section>
 
       {/* ---------------- CTA SECTION ---------------- */}
-      <section className="py-24 px-4 relative overflow-hidden">
+      <section className="py-1 md:py-2 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-50/20 to-transparent pointer-events-none" />
 
-        <div className="max-w-4xl mx-auto text-center relative z-10 bg-white/60 backdrop-blur-2xl p-8 md:p-14 rounded-[2.5rem] border border-white shadow-2xl shadow-purple-900/5">
-          <h2 className="text-3xl md:text-6xl font-black mb-6 leading-tight text-gray-900">
+        <div className="max-w-4xl mx-auto text-center relative z-10 bg-white/60 backdrop-blur-2xl p-8 md:p-4 rounded-[2.5rem] border border-white shadow-2xl shadow-purple-900/5">
+          <h2 className="text-3xl md:text-3xl font-black mb-6 leading-tight text-gray-900">
             Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Journey</span> Today
           </h2>
           <p className="text-gray-600 mb-10 max-w-xl mx-auto text-lg leading-relaxed">
@@ -300,7 +301,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto text-base py-4 px-10 shadow-xl shadow-purple-600/20">
+              <Button size="lg" className="w-full sm:w-auto text-base py-4 px-10 shadow-xl shadow-purple-600/20 cursor-pointer">
                 Get Started Now
               </Button>
             </Link>

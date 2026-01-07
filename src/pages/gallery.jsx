@@ -31,8 +31,8 @@ export default function Gallery() {
     : galleryImages.filter(img => img.category === selectedCategory)
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-16">
-      <PageContainer>
+    <div className="min-h-screen bg-gray-50">
+      <PageContainer className="pb-4">
         {/* Navigation */}
         <div className="mb-8">
           <Link to="/">
