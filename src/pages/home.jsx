@@ -172,7 +172,7 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
             <div className="relative w-34 h-34 md:w-32 md:h-32 mx-auto rounded-full p-1 bg-gradient-to-br from-white to-gray-200 shadow-2xl">
-              <img src="/logo.jpg" alt="Harmonix Logo" className="w-full h-full rounded-full object-cover border-2 border-white" />
+              <img src="/logo.jpg" alt="Harmonix Logo" title="start image" className="w-full h-full rounded-full object-cover border-2 border-white" />
             </div>
           </motion.div>
 

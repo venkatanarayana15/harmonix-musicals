@@ -223,7 +223,7 @@ const Navbar = () => {
   return (
     <>
       {/* MOBILE BOTTOM NAV - Unified Sticky Bar */}
-      <div className="fixed bottom-0 inset-x-0 z-50 opacity-85 bg-white/95 backdrop-blur-md">
+      <div className="fixed bottom-0 inset-x-0 z-50 opacity-87 bg-white/95 backdrop-blur-md">
         <div className="shadow-sm">
           <div className="flex items-center justify-around px-8 py-0.5 relative">
             {navLinks.map(link => {

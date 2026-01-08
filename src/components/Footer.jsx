@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import Button from "./ui/Button";
 import { CONTACT } from "./constant/contact";
+import { FaFacebook, FaLinkedin } from "react-icons/fa6";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -37,6 +38,7 @@ export default function Footer() {
                   src="/logo.jpg"
                   alt="Harmonix"
                   className="w-12 h-12 rounded-full object-cover border"
+                  title="logo"
                 />
                 <div>
                   <span className="block text-xl font-bold text-gray-900">
@@ -54,9 +56,12 @@ export default function Footer() {
               </p>
 
               <div className="flex gap-2">
-                <SocialLink icon={<FaInstagram />} label="Instagram" />
-                <SocialLink icon={<FaYoutube />} label="YouTube" />
-                <SocialLink icon={<FaWhatsapp />} label="WhatsApp" />
+                <SocialLink icon={<FaInstagram />} href={CONTACT.instagram} label="Instagram" />
+                <SocialLink icon={<FaYoutube />}  href={CONTACT.youtube} label="YouTube" />
+                <SocialLink icon={<FaWhatsapp />} href={CONTACT.whatsapp} label="WhatsApp" />
+                <SocialLink icon={<FaFacebook />} href={CONTACT.facebook} label="Facebook" />
+                <SocialLink icon={<FaLinkedin />} href={CONTACT.linkedin} label="LinkedIn" />
+                
               </div>
             </div>
           </div>
@@ -164,13 +169,25 @@ export default function Footer() {
 
 /* ---------- Components ---------- */
 
-function SocialLink({ icon, label }) {
+function SocialLink({ icon, label, href }) {
+  const bgMap = {
+    Instagram:
+      "linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)",
+    "YouTube": "#FF0000",
+    WhatsApp: "#25D366",
+    Facebook: "#3b5998",
+    LinkedIn: "#0077B5"
+  };
+  const bg = bgMap[label] || "transparent";
+
   return (
     <a
-      href="#"
+      href={href || "#"}
+      target={href ? "_blank" : undefined}
+      rel={href ? "noopener noreferrer" : undefined}
       aria-label={label}
-      className="w-9 h-9 rounded-full bg-white border flex items-center justify-center
-                 hover:scale-110 transition shadow-sm text-sm"
+      className="w-9 h-9 rounded-full flex items-center justify-center hover:scale-110 transition shadow-sm text-white text-sm"
+      style={{ background: bg }}
     >
       {icon}
     </a>

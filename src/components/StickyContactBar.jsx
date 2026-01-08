@@ -40,7 +40,7 @@ export default function StickyContactBar() {
             whileTap={{ scale: 0.9 }}
             className={`
               ${color}
-              w-10 h-10 md:w-16 md:h-16
+              w-10 h-10 md:w-12 md:h-10
               flex items-center justify-center
               rounded-full
               text-white text-3xl md:text-2xl
