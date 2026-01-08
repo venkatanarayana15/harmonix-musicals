@@ -1,4 +1,6 @@
 import { motion } from "framer-motion"
+import { useLocation } from "react-router-dom"
+import { useEffect } from "react"
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -69,6 +71,27 @@ const inputBase =
 /* -------------------- Component -------------------- */
 
 export default function Contact() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.state?.targetId) {
+      const element = document.getElementById(location.state.targetId)
+      if (element) {
+        // Wait slightly for layout to stabilize
+        setTimeout(() => {
+          const offset = 40
+          const elementPosition = element.getBoundingClientRect().top
+          const offsetPosition = elementPosition + window.pageYOffset - offset
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          })
+        }, 100)
+      }
+    }
+  }, [location])
+
   return (
     <PageContainer className="pt-24 pb-10 md:pt-32 md:pb-14">
       {/* Decorative Background */}
@@ -169,17 +192,19 @@ export default function Contact() {
           {/* Map */}
           <Card className="p-4 bg-gray-800/80 border border-white/10 rounded-2xl">
             <iframe
-              src="https://www.google.com/maps?q=13.04006853146465,80.17761999806316&z=16&output=embed"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242.9332304368422!2d80.17726276069877!3d13.040020245660644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52611f09c91283%3A0x8deca7c7db2c7c75!2sHarmonix%20Musicals!5e0!3m2!1sen!2sin!4v1767837666331!5m2!1sen!2sin"
               className="w-full h-72 rounded-xl border border-white/10"
               loading="lazy"
               allowFullScreen
               title="Harmonix Musicals Location"
             />
+            
           </Card>
         </motion.div>
 
         {/* Form Panel */}
         <motion.div
+          id="contact-form"
           initial={{ opacity: 0, x: 12 }}
           animate={{ opacity: 1, x: 0 }}
           className="lg:col-span-6"
@@ -222,12 +247,14 @@ export default function Contact() {
                 placeholder="Your goals or message"
               />
 
-              <Button
-                type="submit"
-                className="w-full py-4 text-white font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-              >
-                Request Free Consultation
-              </Button>
+              <div className="flex justify-center">
+                <Button
+                  type="submit"
+                  className="w-52 justify-items-center text-white font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 cursor-pointer"
+                >
+                  Request Free Consultation
+                </Button>
+              </div>
             </form>
           </Card>
         </motion.div>

@@ -223,9 +223,9 @@ const Navbar = () => {
   return (
     <>
       {/* MOBILE BOTTOM NAV - Unified Sticky Bar */}
-      <div className="fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t">
+      <div className="fixed bottom-0 inset-x-0 z-50 opacity-85 bg-white/95 backdrop-blur-md">
         <div className="shadow-sm">
-          <div className="flex items-center justify-around px-2 py-3">
+          <div className="flex items-center justify-around px-8 py-0.5 relative">
             {navLinks.map(link => {
               const isActive = activeSection === link.id;
               return (
@@ -247,7 +247,7 @@ const Navbar = () => {
                   {isActive && (
                     <motion.div
                       layoutId="mobileIndicator"
-                      className="absolute bottom-1 w-2 h-2 bg-indigo-600 rounded-full"
+                      className="absolute bottom-1 w-10 h-2 bg-indigo-600 rounded-full"
                       transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}
                     />
                   )}
