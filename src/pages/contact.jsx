@@ -123,23 +123,7 @@ export default function Contact() {
           Book a free trial, ask about programs or fees — we&apos;ll guide you
           every step of the way.
         </p>
-        <div
-  style={{
-    display: "flex",
-    justifyContent: "center",
-  }}
->
-  <iframe
-    src="https://task1-60058860509.development.catalystserverless.in"
-    style={{
-      width: "80%",
-      height: "1000px",
-      border: "none",
-      borderRadius: "16px",
-    }}
-  />
-</div>
-
+      
       </motion.div>
 
       {/* Main Grid */}
