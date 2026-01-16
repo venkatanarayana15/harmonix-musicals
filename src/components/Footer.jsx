@@ -71,7 +71,7 @@ export default function Footer() {
             <div className="grid grid-cols-2 gap-4">
 
               {/* QUICK LINKS */}
-              <div className="bg-gray-50 rounded-lg p-4">
+              <div className="bg-blue-50 rounded-lg p-4">
                 <h4 className="font-semibold text-base text-gray-900 mb-3 border-b pb-2">
                   Quick Links
                 </h4>

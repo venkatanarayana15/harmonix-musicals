@@ -125,6 +125,7 @@ export default function Contact() {
         </p>
       
       </motion.div>
+      
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
@@ -204,6 +205,8 @@ export default function Contact() {
             
           </Card>
         </motion.div>
+
+
 
         {/* Form Panel */}
         <motion.div

@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { HiHome, HiInformationCircle, HiAcademicCap, HiMail, HiPhotograph, HiMenuAlt3, HiX } from "react-icons/hi"
+import { motion } from "framer-motion"
+import { HiHome, HiInformationCircle, HiAcademicCap, HiMail, HiPhotograph } from "react-icons/hi"
 import { useLocation, useNavigate } from "react-router-dom"
 import Button from "../ui/Button"
 
@@ -10,6 +10,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
+  
+  // Initialize mobile state safely
   const [isMobile, setIsMobile] = useState(() => {
     try {
       return typeof window !== 'undefined' ? window.innerWidth < 768 : false
@@ -31,6 +33,8 @@ const Navbar = () => {
   useEffect(() => {
     const checkMobile = () => setIsMobile(typeof window !== 'undefined' ? window.innerWidth < 768 : false)
     checkMobile()
+    
+    // Debounce resize slightly if needed, but standard listener is usually fine for simple boolean
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
   }, [])
@@ -42,23 +46,33 @@ const Navbar = () => {
     }
   }, [location.pathname, isHomePage])
 
-  /* ---------- SCROLL SPY ---------- */
+  /* ---------- OPTIMIZED SCROLL SPY ---------- */
   useEffect(() => {
     let observer = null
+    
+    // 1. Setup Intersection Observer
     if (isHomePage && typeof IntersectionObserver !== "undefined") {
       const options = {
         root: null,
-        rootMargin: isMobile ? "-30% 0px -65% 0px" : "-100px 0px -40% 0px",
+        // OPTIMIZATION: 
+        // Mobile: Trigger when section hits top third (-30%)
+        // Desktop: Trigger ONLY when section is in the MIDDLE of screen (-45% top, -45% bottom). 
+        // This prevents rapid state thrashing on Desktop.
+        rootMargin: isMobile ? "-30% 0px -65% 0px" : "-45% 0px -45% 0px",
         threshold: 0,
       }
 
       observer = new IntersectionObserver((entries) => {
+        // If user clicked a nav link, ignore scroll spy until scroll finishes
         if (isClickingRef.current) return
 
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const id = entry.target.id
-            if (id) setActiveSection(id)
+            if (id) {
+              // OPTIMIZATION: Only update state if it actually changed
+              setActiveSection((prev) => (prev !== id ? id : prev))
+            }
           }
         })
       }, options)
@@ -69,19 +83,21 @@ const Navbar = () => {
       })
     }
 
-    // Scroll background effect
+    // 2. Optimized Scroll Background Handler
     let ticking = false
     const onScroll = () => {
       if (ticking) return
       ticking = true
       requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 20)
+        const isScrolled = window.scrollY > 20
+        // OPTIMIZATION: Only update state if boolean changed
+        setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev))
         ticking = false
       })
     }
 
     window.addEventListener("scroll", onScroll, { passive: true })
-    onScroll()
+    onScroll() // Initial check
 
     return () => {
       window.removeEventListener("scroll", onScroll)
@@ -106,29 +122,20 @@ const Navbar = () => {
     // Disable spy temporarily so it doesn't revert active state while scrolling
     isClickingRef.current = true
     if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current)
+    
+    // Wait longer (1000ms) to ensure smooth scroll finishes before re-enabling spy
     clickTimeoutRef.current = setTimeout(() => {
       isClickingRef.current = false
     }, 1000)
 
     // For other links (Home, About, etc.)
     if (!isHomePage) {
-      // Navigate to home and pass the target ID in state
-      // This tells Landing.jsx to scroll immediately on mount
       navigate("/", { state: { targetId: id } })
     } else {
-      // Already on home
       const el = document.getElementById(id)
       if (el) {
-        // Offset: 
-        // Mobile: just a bit of padding (20px)
-        // Desktop: clear the fixed header (90px)
         const offset = isMobile ? 20 : 90
-
-        // Scroll Behavior:
-        // PC: smooth
-        // Mobile: auto (instant)
         const behavior = isMobile ? "auto" : "smooth"
-
         const elementPosition = el.getBoundingClientRect().top
         const offsetPosition = elementPosition + window.pageYOffset - offset
 
@@ -153,10 +160,11 @@ const Navbar = () => {
   if (!isMobile) {
     return (
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || !isHomePage
-          ? "bg-white/90 backdrop-blur-xl border-b shadow-sm"
-          : "bg-transparent"
-          }`}
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+          scrolled || !isHomePage
+            ? "bg-white/90 backdrop-blur-md border-b shadow-sm" // Switched to blur-md for better FPS
+            : "bg-transparent"
+        }`}
       >
         <nav className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
@@ -187,7 +195,7 @@ const Navbar = () => {
                   key={link.id}
                   onClick={() => handleNavigation(link.id)}
                   className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ease-out
-                                        ${activeSection === link.id
+                                            ${activeSection === link.id
                       ? "text-gray-900"
                       : "text-gray-500 hover:text-gray-900 hover:bg-white/50"
                     }`}
@@ -223,7 +231,7 @@ const Navbar = () => {
   return (
     <>
       {/* MOBILE BOTTOM NAV - Unified Sticky Bar */}
-      <div className="fixed bottom-0 inset-x-0 z-50 opacity-87 bg-white/95 backdrop-blur-md">
+      <div className="fixed bottom-0 inset-x-0 z-50 opacity-90 bg-white/95 backdrop-blur-md">
         <div className="shadow-sm">
           <div className="flex items-center justify-around px-8 py-0.5 relative">
             {navLinks.map(link => {
@@ -233,21 +241,21 @@ const Navbar = () => {
                   key={link.id}
                   onClick={() => handleNavigation(link.id)}
                   className={`flex flex-col items-center justify-center p-2 rounded-xl transition-all duration-300 ease-out w-full active:scale-90
-                                        ${isActive ? "text-white" : "text-gray-500 hover:text-gray-300"}`}
+                                            ${isActive ? "text-white" : "text-gray-500 hover:text-gray-300"}`}
                 >
                   <div className={`mb-1 transition-transform duration-300 ease-out ${isActive ? "-translate-y-1" : ""}`}>
                     <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full transition-colors duration-300
-                      ${isActive ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}>
+                      ${isActive ? "bg-black text-white" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}>
                       <span className="text-3xl">{link.icon}</span>
                     </div>
                   </div>
-                  <span className={`text-[12px] font-medium transition-opacity duration-300 ease-out ${isActive ? "opacity-100 text-indigo-600" : "opacity-0 hidden text-gray-700"}`}>
+                  <span className={`text-[12px] font-extrabold transition-opacity duration-300 ease-out ${isActive ? "opacity-100 text-indigo-900" : "opacity-0 hidden text-gray-700"}`}>
                     {link.name}
                   </span>
                   {isActive && (
                     <motion.div
                       layoutId="mobileIndicator"
-                      className="absolute bottom-1 w-10 h-2 bg-indigo-600 rounded-full"
+                      className="absolute bottom-1 w-10 h-2 bg-black rounded-full"
                       transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}
                     />
                   )}
