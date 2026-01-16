@@ -98,7 +98,7 @@ export default function Gallery() {
             </motion.div>
           ))}
         </div>
-        <div className="mt-16 text-center">
+        <div className="mt-6 text-center">
           <p className="text-gray-400 text-sm">End of Gallery</p>
         </div>
       </PageContainer>

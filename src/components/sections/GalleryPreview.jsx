@@ -37,57 +37,69 @@ export default function GalleryPreview() {
     ]
 
     return (
-        <PageContainer>
-            <div className="py-10 md:py-16">
-                {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-10"
-                >
-                    <h2 className="text-3xl md:text-5xl font-black mb-4">
-                        Captured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Moments</span>
-                    </h2>
-                    <p className="text-gray-600 max-w-xl mx-auto">
-                        A glimpse into our vibrant musical community.
-                    </p>
-                </motion.div>
+        <section className="relative py-2 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            {/* Header */}
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="text-center mb-8"
+            >
+                <h2 className="text-4xl md:text-5xl font-black mb-2 tracking-tight">
+                    Captured <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600">Moments</span>
+                </h2>
+                <p className="text-lg text-gray-600 max-w-xl mx-auto font-medium">
+                    A glimpse into our vibrant musical community.
+                </p>
+            </motion.div>
 
-                {/* Gallery Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
-                    {galleryImages.map((img, index) => (
-                        <motion.div
-                            key={img.id}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="h-full"
+            {/* Gallery Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+                {galleryImages.map((img, index) => (
+                    <motion.div
+                        key={img.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                    >
+                        <Card
+                            glass={true}
+                            className="h-full group relative overflow-hidden border border-white/20 hover:border-violet-300/50 transition-all duration-300"
                         >
-                            <Card
-                                glass={true}
-                                className="h-full flex flex-col justify-center items-center p-6 text-center cursor-pointer group hover:border-purple-200"
-                            >
-                                <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300 drop-shadow-sm">
-                                    {img.image}
-                                </div>
-                                <h3 className="font-bold text-gray-900">{img.title}</h3>
-                                <p className="text-xs text-gray-500 mt-1">{img.category}</p>
-                            </Card>
-                        </motion.div>
-                    ))}
-                </div>
+                            {/* Gradient subtle background on hover */}
+                            <div className="absolute inset-0 bg-linear-to-br from-violet-500/0 via-fuchsia-500/0 to-purple-500/0 opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
 
-                {/* View More Button */}
-                <div className="text-center">
-                    <Link to="/gallery">
-                        <Button variant="secondary" size="lg" className="shadow-lg hover:shadow-xl">
-                            View Full Gallery
-                        </Button>
-                    </Link>
-                </div>
+                            <div className="flex flex-col items-center text-center p-6 relative z-10">
+                                <div className="mb-4 p-4 rounded-full bg-gray-50/50 group-hover:bg-white/80 transition-colors duration-300 shadow-sm group-hover:shadow-md ring-1 ring-gray-900/5">
+                                    <span className="text-4xl transform group-hover:scale-110 transition-transform duration-300 block">
+                                        {img.image}
+                                    </span>
+                                </div>
+                                <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-violet-700 transition-colors">
+                                    {img.title}
+                                </h3>
+                                <p className="text-sm font-medium text-gray-500 bg-gray-100 px-3 py-1 rounded-full mt-2">
+                                    {img.category}
+                                </p>
+                            </div>
+                        </Card>
+                    </motion.div>
+                ))}
             </div>
-        </PageContainer>
+
+            {/* View More Button */}
+            <div className="text-center mb-4">
+                <Link to="/gallery">
+                    <Button
+                        variant="secondary"
+                        size="lg"
+                        className="shadow-sm hover:shadow-lg border-gray-200 hover:border-violet-200 hover:bg-white transition-all group"
+                    >
+                        <span className="group-hover:text-violet-700 transition-colors">View Full Gallery</span>
+                    </Button>
+                </Link>
+            </div>
+        </section>
     )
 }

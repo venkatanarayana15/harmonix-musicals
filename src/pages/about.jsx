@@ -37,11 +37,10 @@ export default function About() {
     },
   ];
 
- 
   return (
     <PageContainer>
-      {/* Hero Section */}
-      <section className="relative py-12 md:py-4 overflow-hidden">
+      {/* Hero Section - Reduced bottom padding to pull Stats closer */}
+      <section className="relative py-10 md:py-6 overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-b from-purple-50/50 to-transparent -z-10" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -53,25 +52,25 @@ export default function About() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-block py-1.5 px-5 rounded-full bg-white border border-purple-100 text-purple-600 text-sm font-semibold mb-8 shadow-sm"
+            className="inline-block py-1.5 px-5 rounded-full bg-white border border-purple-100 text-purple-600 text-sm font-semibold mb-6 shadow-sm"
           >
             ✨ Established 2003
           </motion.span>
-          <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight text-gray-900 font-display">
+          <h1 className="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tight text-gray-900 font-display">
             We Create
-            <span className="block bg-gradient-to-r from-purple-600 via-fuchsia-500 to-purple-600 bg-clip-text text-transparent bg-size-[200%_auto] animate-shimmer">
+            <span className="block bg-gradient-to-r from-purple-600 via-fuchsia-500 to-purple-600 bg-clip-text text-transparent bg-size-[200%_auto] animate-shimmer pt-2">
               Musicians
             </span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-medium max-w-2xl mx-auto">
             More than just a school. We are a community dedicated to nurturing talent, creativity, and confidence.
           </p>
         </motion.div>
       </section>
 
-      {/* Stats Section - Glass Effect */}
-      <section className="py-12 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+      {/* Stats Section - Tighter padding to fit snugly under Hero */}
+      <section className="py-6 md:py-10 relative z-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {stats.map((stat, index) => (
             <motion.div
               key={index}
@@ -80,15 +79,15 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="glass p-6 md:p-8 rounded-2xl text-center border border-white/50 hover:border-purple-200 transition-all duration-300"
+              className="glass p-5 md:p-6 rounded-2xl text-center border border-white/50 hover:border-purple-200 transition-all duration-300 shadow-sm"
             >
-              <div className={`text-4xl md:text-5xl mb-4 flex justify-center ${stat.color} filter drop-shadow-sm`}>
+              <div className={`text-3xl md:text-4xl mb-3 flex justify-center ${stat.color} filter drop-shadow-sm`}>
                 {stat.icon}
               </div>
-              <div className="text-3xl md:text-4xl font-black text-gray-900 mb-2 font-display">
+              <div className="text-2xl md:text-3xl font-black text-gray-900 mb-1 font-display">
                 {stat.value}
               </div>
-              <div className="text-sm md:text-base text-gray-600 font-medium tracking-wide uppercase">
+              <div className="text-xs md:text-sm text-gray-600 font-medium tracking-wide uppercase">
                 {stat.label}
               </div>
             </motion.div>
@@ -96,27 +95,27 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission & Vision - Split Layout */}
-      <section className="py-16 md:py-24">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+      {/* Mission & Vision - Significantly reduced vertical padding */}
+      <section className="py-8 md:py-12">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="glass p-8 md:p-12 rounded-3xl border border-gray-100 shadow-xl shadow-purple-900/5 relative overflow-hidden group"
+            className="glass p-8 rounded-3xl border border-gray-100 shadow-lg shadow-purple-900/5 relative overflow-hidden group flex flex-col justify-center"
           >
-            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
-              <FaLightbulb size={120} />
+            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
+              <FaLightbulb size={100} />
             </div>
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <span className="w-2 h-8 bg-purple-600 rounded-full block"></span>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                <span className="w-1.5 h-6 bg-purple-600 rounded-full block"></span>
                 Our Mission
               </h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
+              <p className="text-base text-gray-700 leading-relaxed mb-6">
                 To provide exceptional music education that blends classical foundations with contemporary techniques, empowering students to express their unique musical identity.
               </p>
-              <div className="pl-6 border-l-4 border-purple-200 italic text-gray-600 font-medium">
+              <div className="pl-4 border-l-4 border-purple-200 italic text-gray-600 font-medium text-sm">
                 "We do not just teach music, we cultivate artists."
               </div>
             </div>
@@ -127,20 +126,20 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="glass p-8 md:p-12 rounded-3xl border border-gray-100 shadow-xl shadow-blue-900/5 relative overflow-hidden group"
+            className="glass p-8 rounded-3xl border border-gray-100 shadow-lg shadow-blue-900/5 relative overflow-hidden group flex flex-col justify-center"
           >
-            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
-              <FaRocket size={120} />
+            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity transform group-hover:scale-110 duration-500">
+              <FaRocket size={100} />
             </div>
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                <span className="w-2 h-8 bg-blue-600 rounded-full block"></span>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 flex items-center gap-3">
+                <span className="w-1.5 h-6 bg-blue-600 rounded-full block"></span>
                 Our Vision
               </h2>
-              <p className="text-lg text-gray-700 leading-relaxed mb-8">
+              <p className="text-base text-gray-700 leading-relaxed mb-6">
                 To create a world where every individual has access to quality music education, fostering a global community of confident performers and creators.
               </p>
-              <div className="pl-6 border-l-4 border-blue-200 italic text-gray-600 font-medium">
+              <div className="pl-4 border-l-4 border-blue-200 italic text-gray-600 font-medium text-sm">
                 "Building bridges through music, one note at a time."
               </div>
             </div>
@@ -148,16 +147,16 @@ export default function About() {
         </div>
       </section>
 
-      {/* Core Values - Grid */}
-      <section className="py-12">
-        <div className="text-center mb-16">
+      {/* Core Values - Tighter Header spacing */}
+      <section className="py-8 md:py-12 pb-16">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 font-display">
             Our Core Values
           </h2>
-          <div className="w-24 h-1.5 bg-purple-600 mx-auto mt-4 rounded-full opacity-20"></div>
+          <div className="w-20 h-1.5 bg-purple-600 mx-auto mt-3 rounded-full opacity-20"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           {values.map((value, index) => (
             <motion.div
               key={index}
@@ -165,11 +164,11 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -8 }}
-              className={`p-8 rounded-2xl border transition-all duration-300 ${value.color} bg-opacity-50 hover:bg-opacity-100 hover:shadow-lg border-opacity-50`}
+              whileHover={{ y: -5 }}
+              className={`p-6 rounded-2xl border transition-all duration-300 ${value.color} bg-opacity-50 hover:bg-opacity-100 hover:shadow-md border-opacity-50`}
             >
-              <div className="text-4xl mb-6">{value.icon}</div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900">{value.title}</h3>
+              <div className="text-3xl mb-4">{value.icon}</div>
+              <h3 className="text-lg font-bold mb-2 text-gray-900">{value.title}</h3>
               <p className="text-gray-600 leading-relaxed text-sm font-medium">
                 {value.description}
               </p>
@@ -178,7 +177,6 @@ export default function About() {
         </div>
       </section>
 
-      
     </PageContainer>
   );
 }

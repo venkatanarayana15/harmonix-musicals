@@ -196,9 +196,9 @@ function SocialLink({ icon, label, href }) {
 
 function ContactItem({ icon, title, value, href, color }) {
   const colors = {
-    blue: "group-hover:bg-blue-500 group-hover:border-blue-500 text-blue-600",
-    green: "group-hover:bg-green-500 group-hover:border-green-500 text-green-600",
-    purple: "group-hover:bg-purple-500 group-hover:border-purple-500 text-purple-600"
+    blue: "group-hover:bg-blue-200 group-hover:border-blue-500 text-blue-600",
+    green: "group-hover:bg-green-200 group-hover:border-green-500 text-green-600",
+    purple: "group-hover:bg-purple-200 group-hover:border-purple-500 text-purple-600"
   };
 
   return (

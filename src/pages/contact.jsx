@@ -93,11 +93,11 @@ export default function Contact() {
   }, [location])
 
   return (
-    <PageContainer className="pt-24 pb-10 md:pt-32 md:pb-14">
+    <PageContainer className="pt-2 pb-2 md:pt-2 md:pb-2">
       {/* Decorative Background */}
       <div className="fixed inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-24 left-10 w-40 h-40 bg-gray-700/10 blur-3xl" />
-        <div className="absolute bottom-24 right-10 w-48 h-48 bg-gray-700/10 blur-3xl" />
+        <div className="absolute top-4 left-10 w-40 h-40 bg-gray-700/10 blur-3xl" />
+        <div className="absolute bottom-4 right-10 w-48 h-48 bg-gray-700/10 blur-3xl" />
       </div>
 
       {/* Header */}
