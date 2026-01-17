@@ -240,11 +240,11 @@ export default function Home() {
       {/* ---------------- PROGRAMS PREVIEW ---------------- */}
       <section
         id="learning-preview"
-        className="pt-12 pb-4 md:pt-20 md:pb-6 px-4 relative"
+        className="pt-12 pb-4 md:pt-10 md:pb-6 px-4 relative"
       >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-5xl font-black mb-4">
+            <h2 className="text-3xl md:text-3xl font-black mb-4">
               World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Training</span>
             </h2>
             <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-medium">

@@ -54,7 +54,7 @@ export default function About() {
   return (
     <PageContainer>
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-20 pb-32 md:pb-40 overflow-hidden bg-slate-50">
+      <section className="relative pt-8 pb-12 md:pb-30 overflow-hidden bg-slate-50">
         {/* Professional Abstract Background */}
         <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[600px] h-[600px] bg-purple-100 rounded-full blur-3xl opacity-60 pointer-events-none" />
         <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-[500px] h-[500px] bg-blue-100 rounded-full blur-3xl opacity-60 pointer-events-none" />
@@ -62,7 +62,7 @@ export default function About() {
         {/* Subtle Grid Pattern */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-6xl mx-auto px-2 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -73,12 +73,12 @@ export default function About() {
               <span className="text-xs font-bold tracking-widest text-slate-600 uppercase">Est. 2025</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">
+            <h3 className="text-4xl md:text-4xl font-bold text-slate-900 tracking-tight mb-6 leading-tight">
               Cultivating the <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
                 Artists of Tomorrow
               </span>
-            </h1>
+            </h3>
 
             <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
               Harmonix isn't just a music school. It's a sanctuary for sound,
@@ -161,32 +161,32 @@ export default function About() {
                 </div>
 
                 {/* Floating Quote Card - Creates Depth */}
-                <motion.div 
-  initial={{ y: 20, opacity: 0 }}
-  whileInView={{ y: 0, opacity: 1 }}
-  transition={{ delay: 0.4 }}
-  // CHANGES: Dark slate background, white text, glowing border effect
-  className="absolute bottom-6 left-6 right-6 bg-slate-900/90 backdrop-blur-md p-6 rounded-2xl shadow-2xl border border-white/10 z-20"
->
-  <FaQuoteLeft className="text-purple-400 mb-4 text-3xl opacity-50" />
-  
-  <p className="text-slate-100 text-lg font-light italic leading-relaxed mb-6">
-    "Music gives a soul to the universe, wings to the mind, flight to the imagination and life to everything."
-  </p>
-  
-  <div className="flex items-center justify-between">
-    <div className="flex items-center gap-2">
-      <div className="w-1 h-1 rounded-full bg-purple-500"></div>
-      <span className="text-xs font-bold text-purple-200 uppercase tracking-widest">Plato</span>
-    </div>
-    {/* Decorative element */}
-    <div className="flex gap-1">
-      <div className="w-1.5 h-1.5 rounded-full bg-purple-500/20"></div>
-      <div className="w-1.5 h-1.5 rounded-full bg-purple-500/40"></div>
-      <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
-    </div>
-  </div>
-</motion.div>
+                <motion.div
+                  initial={{ y: 20, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  // CHANGES: Dark slate background, white text, glowing border effect
+                  className="absolute bottom-6 left-6 right-6 bg-slate-900/90 backdrop-blur-md p-6 rounded-2xl shadow-2xl border border-white/10 z-20"
+                >
+                  <FaQuoteLeft className="text-purple-400 mb-4 text-3xl opacity-50" />
+
+                  <p className="text-slate-100 text-lg font-light italic leading-relaxed mb-6">
+                    "Music gives a soul to the universe, wings to the mind, flight to the imagination and life to everything."
+                  </p>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-1 h-1 rounded-full bg-purple-500"></div>
+                      <span className="text-xs font-bold text-purple-200 uppercase tracking-widest">Plato</span>
+                    </div>
+                    {/* Decorative element */}
+                    <div className="flex gap-1">
+                      <div className="w-1.5 h-1.5 rounded-full bg-purple-500/20"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-purple-500/40"></div>
+                      <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
 
               {/* Decorative dots */}
@@ -205,9 +205,9 @@ export default function About() {
       </section>
 
       {/* --- CORE VALUES (Stacked Mobile UI) --- */}
-      <section className="py-16 md:py-24 bg-slate-50">
-        <div className="max-w-6xl mx-auto px-4 md:px-6"> {/* Reduced px for mobile */}
-          <div className="text-center mb-10 md:mb-16">
+      <section className="py-6 md:py-14 bg-slate-50">
+        <div className="max-w-6xl mx-auto px-2 md:px-3"> {/* Reduced px for mobile */}
+          <div className="text-center mb-5 md:mb-8">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4">Our Core Values</h2>
             <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto rounded-full" />
             <p className="mt-3 text-slate-600 text-sm md:text-base">The principles that guide every lesson we teach</p>
@@ -242,7 +242,7 @@ export default function About() {
       </section>
 
       {/* --- CTA SECTION --- */}
-      <section className="py-10 bg-slate-400 text-white overflow-hidden relative rounded-3xl">
+      <section className="py-10 bg-slate-500 text-white overflow-hidden relative rounded-3xl">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-purple-500 via-slate-900 to-slate-900"></div>
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to start your journey?</h2>
@@ -250,10 +250,10 @@ export default function About() {
             Join a community that celebrates every note. Whether you are a beginner or an advanced player, we have a place for you.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-white text-slate-900 font-bold rounded-full hover:bg-purple-50 transition-colors shadow-lg hover:shadow-purple-500/20 transform hover:-translate-y-1 duration-200">
+            <button className="px-8 py-4 bg-white text-slate-900 font-bold rounded-full hover:bg-purple-50 transition-colors shadow-lg hover:shadow-purple-500/20 transform hover:-translate-y-1 duration-200 cursor-pointer">
               Book a Free Trial
             </button>
-            <button className="px-8 py-4 border border-slate-800 bg-slate-800 text-white font-semibold rounded-full hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
+            <button className="px-8 py-4 bg-slate-900 text-white font-bold rounded-full transition-colors shadow-lg hover:shadow-purple-500/20 transform hover:-translate-y-1 duration-200 cursor-pointer flex items-center justify-center gap-2">
               View Programs <FaArrowRight size={14} />
             </button>
           </div>

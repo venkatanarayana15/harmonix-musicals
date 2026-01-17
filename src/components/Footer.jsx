@@ -82,8 +82,7 @@ export default function Footer() {
                       <Link
                         to={link.to}
                         className="flex items-center gap-2 px-2 py-1.5 rounded-md
-                                   text-sm text-gray-600 hover:text-gray-900
-                                   hover:bg-white transition"
+                                   text-sm text-gray-600 hover:text-gray-900"
                       >
                         <span className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
                           <FaChevronRight className="text-[10px] text-blue-600" />
