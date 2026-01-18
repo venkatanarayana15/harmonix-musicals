@@ -10,7 +10,6 @@ import {
   FaChalkboardTeacher,
   FaCalendarAlt
 } from "react-icons/fa"
-// Removed invalid icon import
 import Button from "../components/ui/Button"
 import Card from "../components/ui/Card"
 
@@ -33,7 +32,7 @@ const instruments = [
     shadow: "shadow-blue-500/30"
   },
   {
-    icon: <div className="font-serif italic text-2xl">Violin</div>, // Custom text icon for Violin if icon missing
+    icon: <div className="font-serif italic text-2xl">Violin</div>,
     title: "Violin",
     desc: "Traditional & Western",
     levels: ["Suzuki", "Grade"],
@@ -144,7 +143,8 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="text-gray-900 overflow-x-hidden font-sans min-h-screen">
+    // Added mt-[20px] md:mt-0 to apply 20px margin-top only on mobile devices
+    <div className="text-gray-900 overflow-x-hidden font-sans min-h-screen rounded-2xl mt-[20px] md:mt-0">
 
       {/* ---------------- HERO SECTION ---------------- */}
       <section
@@ -159,6 +159,15 @@ export default function Home() {
           <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-blue-200/40 rounded-full blur-[100px] mix-blend-multiply animate-float delay-1000" />
           <div className="absolute top-[30%] left-[40%] w-[300px] h-[300px] bg-pink-200/30 rounded-full blur-[80px] mix-blend-multiply animate-float delay-2000" />
         </div>
+        
+        {/* --- NEW UNIQUE TEXT FOR MOBILE --- 
+           block: Visible by default
+           md:hidden: Hidden on medium screens (Desktop/Tablet)
+           font-serif italic: Unique font style
+        */}
+        <p className="mt-8 block md:hidden text-4xl font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">
+            Harmonix Musicals
+        </p>
 
         {/* Content Container */}
         <div className="relative z-10 text-center w-full max-w-5xl mx-auto flex flex-col items-center justify-center p-4">
@@ -171,7 +180,7 @@ export default function Home() {
             className="mb-8 relative group"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-            <div className="relative w-34 h-34 md:w-32 md:h-32 mx-auto rounded-full p-1 bg-gradient-to-br from-white to-gray-200 shadow-2xl">
+            <div className="relative w-34 h-34 md:w-32 md:h-32 mx-auto rounded-full p-1 bg-gradient-to-br from-white to-gray-200 shadow-2xl mt-4 md:mt-3">
               <img src="/logo.jpg" alt="Harmonix Logo" title="start image" className="w-full h-full rounded-full object-cover border-2 border-white" />
             </div>
           </motion.div>
@@ -216,11 +225,11 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row w-full max-w-md gap-4 justify-center mx-auto"
+            className="flex flex-col sm:flex-row w-full max-w-md gap-4 justify-center mx-auto mt-[0px] md:-mt-5"
           >
             <Button
               size="lg"
-              className="w-full shadow-xl shadow-purple-900/20 cursor-pointer"
+              className="w-full shadow-xl shadow-purple-300/20 cursor-pointer"
               onClick={() => scrollToSection("learning-preview")}
             >
               Explore Programs

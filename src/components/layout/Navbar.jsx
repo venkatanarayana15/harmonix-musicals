@@ -162,7 +162,7 @@ const Navbar = () => {
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           scrolled || !isHomePage
-            ? "bg-white/90 backdrop-blur-md border-b shadow-sm" // Switched to blur-md for better FPS
+            ? "bg-white/95 backdrop-blur-md border-b shadow-sm" // Switched to blur-md for better FPS
             : "bg-transparent"
         }`}
       >
@@ -183,8 +183,8 @@ const Navbar = () => {
                 />
               </div>
               <div>
-                <div className="text-lg font-bold text-gray-900 tracking-tight group-hover:text-gray-700 transition-colors">HARMONIX</div>
-                <div className="text-[10px] font-bold tracking-widest text-gray-500 uppercase">Musicals</div>
+                <div className="text-lg font-bold font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">HARMONIX</div>
+                <div className="text-[15px] font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">Musicals</div>
               </div>
             </div>
 
@@ -203,7 +203,7 @@ const Navbar = () => {
                   {activeSection === link.id && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 bg-white shadow-sm border border-gray-300 rounded-full"
+                      className="absolute inset-0 bg-white/95 shadow-sm border border-gray-300 rounded-full"
                       transition={{ type: "spring", bounce: 0.25, duration: 0.5 }}
                     />
                   )}
@@ -231,7 +231,7 @@ const Navbar = () => {
   return (
     <>
       {/* MOBILE BOTTOM NAV - Unified Sticky Bar */}
-      <div className="fixed bottom-0 inset-x-0 z-50 opacity-90 bg-gray-200 backdrop-blur-md">
+      <div className="fixed bottom-0 inset-x-0 z-50 opacity-90 bg-gray-300 backdrop-blur-md">
         <div className="shadow-sm">
           <div className="flex items-center justify-around px-8 py-0.5 relative">
             {navLinks.map(link => {
@@ -266,9 +266,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* SPACER for Mobile ensures content isn't covered */}
-      <div className="h-20 md:hidden" />
-    </>
+      </>
   )
 }
 
