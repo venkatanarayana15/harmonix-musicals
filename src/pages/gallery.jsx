@@ -4,6 +4,7 @@ import { FaPlay, FaDownload, FaDownload as FaDownloadIcon } from "react-icons/fa
 import PageContainer from "../components/layout/PageContainer";
 import Card from "../components/ui/Card";
 import Lightbox from "../components/ui/Lightbox";
+import SEO from "../components/SEO";
 
 const VIDEO_API = import.meta.env.VITE_VIDEO_API;
 const IMAGE_API = import.meta.env.VITE_IMAGE_API;
@@ -126,6 +127,11 @@ export default function Gallery() {
 
   return (
     <div className="min-h-screen bg-neutral-50">
+      <SEO
+        title="Gallery"
+        description="Explore our gallery of musical performances, student achievements, and events."
+        keywords="music gallery, performance photos, student videos, chennai music events"
+      />
       <PageContainer className="pt-10 pb-24">
         {/* HEADER */}
         <div className="text-center mb-16">

@@ -96,12 +96,12 @@ export default function About() {
               <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Est. 2025</span>
             </div>
 
-            <h3 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.1]">
+            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.1]">
               Does your sound <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600">
                 have a home?
               </span>
-            </h3>
+            </h2>
 
             <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed px-4 font-light">
               Harmonix is a sanctuary for sound, where classical tradition meets the edge of contemporary innovation.

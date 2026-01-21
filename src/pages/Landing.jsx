@@ -6,6 +6,7 @@ import Learning from "./learning"
 import Contact from "./contact"
 import GalleryPreview from "../components/sections/GalleryPreview"
 import StickyContactBar from "../components/StickyContactBar"
+import SEO from "../components/SEO"
 
 export default function Landing() {
     const location = useLocation()
@@ -44,6 +45,11 @@ export default function Landing() {
 
     return (
         <main className="grow">
+            <SEO
+                title="Home"
+                description="Welcome to Harmonix Musicals - The best music academy in Chennai for Guitar, Piano, Violin, and Vocals."
+                keywords="music classes, chennai music school, guitar, piano, violin, vocals"
+            />
             <section id="home">
                 <Home />
             </section>

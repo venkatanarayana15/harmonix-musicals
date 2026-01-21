@@ -53,9 +53,9 @@ export default function Learning() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center mb-8 md:mb-12"
             >
-                <h1 className="text-3xl md:text-5xl font-black mb-4 md:mb-6">
-                    Our <span className="bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">Curriculum</span>
-                </h1>
+                <h2 className="text-3xl md:text-5xl font-black mb-4 md:mb-6">
+                    Our <span className="bg-linear-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">Curriculum</span>
+                </h2>
                 <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
                     Choose your instrument and begin your musical journey with structured lessons, expert guidance, and a supportive community.
                 </p>
@@ -99,7 +99,7 @@ export default function Learning() {
                 viewport={{ once: true }}
                 className="text-center relative py-10 md:py-14 px-5 md:px-6 rounded-3xl overflow-hidden"
             >
-                <div className="absolute inset-0 bg-gradient-to-r from-gray-800/50 to-gray-800/50 backdrop-blur-md" />
+                <div className="absolute inset-0 bg-linear-to-r from-gray-800/50 to-gray-800/50 backdrop-blur-md" />
                 <div className="relative z-10">
                     <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
                         Not sure which instrument to choose?

@@ -110,12 +110,12 @@ export default function Contact() {
           HARMONIX MUSICALS
         </span>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mt-3">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mt-3">
           Start Your{" "}
           <span className="bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 bg-clip-text text-transparent">
             Music Journey
           </span>
-        </h1>
+        </h2>
 
 
 
@@ -123,9 +123,9 @@ export default function Contact() {
           Book a free trial, ask about programs or fees — we&apos;ll guide you
           every step of the way.
         </p>
-      
+
       </motion.div>
-      
+
 
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
@@ -202,7 +202,7 @@ export default function Contact() {
               allowFullScreen
               title="Harmonix Musicals Location"
             />
-            
+
           </Card>
         </motion.div>
 
