@@ -8,6 +8,8 @@ export default function SEO({ title, description, keywords, image, url }) {
 
     const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
 
+    const fullImage = image && (image.startsWith("http") || image.startsWith("//")) ? image : `${siteUrl}${image || defaultImage}`;
+
     return (
         <Helmet>
             {/* Standard Metadata */}
@@ -20,13 +22,13 @@ export default function SEO({ title, description, keywords, image, url }) {
             <meta property="og:url" content={url || siteUrl} />
             <meta property="og:title" content={fullTitle} />
             <meta property="og:description" content={description || defaultDescription} />
-            <meta property="og:image" content={image || defaultImage} />
+            <meta property="og:image" content={fullImage} />
 
             {/* Twitter */}
             <meta property="twitter:card" content="summary_large_image" />
             <meta property="twitter:title" content={fullTitle} />
             <meta property="twitter:description" content={description || defaultDescription} />
-            <meta property="twitter:image" content={image || defaultImage} />
+            <meta property="twitter:image" content={fullImage} />
         </Helmet>
     );
 }
