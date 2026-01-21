@@ -207,7 +207,7 @@ export default function Gallery() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
               className={`grid gap-6 ${activeTab === "images"
-                ? "grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+                ? "sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
                 : "sm:grid-cols-2 lg:grid-cols-3 gap-y-10"
                 }`}
             >
@@ -256,7 +256,7 @@ export default function Gallery() {
                                 link.click();
                                 document.body.removeChild(link);
                               }}
-                              className="text-blue-600 hover:text-blue-800 transition-colors p-1.5 hover:bg-blue-50 rounded-full"
+                              className="text-gray-400 hover:text-blue-600 transition-colors p-1.5 hover:bg-blue-50 rounded-full"
                               title="Download"
                             >
                               <FaDownload size={14} />

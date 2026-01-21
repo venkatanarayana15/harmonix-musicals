@@ -35,17 +35,17 @@ export default function Footer() {
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <Link to="/" className="flex items-center gap-3 mb-3">
                 <img
-                  src="/logo.jpg"
-                  alt="Harmonix"
-                  className="w-12 h-12 rounded-full object-cover border"
-                  title="logo"
+                  src="/logo.png"
+                  alt="Footer logo"
+                  className="w-12 h-12 rounded-3xl object-cover border"
+                  title="Footer logo"
                 />
                 <div>
-                  <span className="block text-xl font-bold text-gray-900">
+                  <span className="block text-xl font-serif italic font-bold text-gray-900">
                     Harmonix
                   </span>
-                  <span className="text-xs text-gray-500">
-                    Musical Institute
+                  <span className="text-xs font-serif italic font-bold text-gray-500">
+                    Musicals
                   </span>
                 </div>
               </Link>

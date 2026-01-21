@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
-  
+
   // Initialize mobile state safely
   const [isMobile, setIsMobile] = useState(() => {
     try {
@@ -33,7 +33,7 @@ const Navbar = () => {
   useEffect(() => {
     const checkMobile = () => setIsMobile(typeof window !== 'undefined' ? window.innerWidth < 768 : false)
     checkMobile()
-    
+
     // Debounce resize slightly if needed, but standard listener is usually fine for simple boolean
     window.addEventListener('resize', checkMobile)
     return () => window.removeEventListener('resize', checkMobile)
@@ -49,16 +49,16 @@ const Navbar = () => {
   /* ---------- OPTIMIZED SCROLL SPY ---------- */
   useEffect(() => {
     let observer = null
-    
+
     // 1. Setup Intersection Observer
     if (isHomePage && typeof IntersectionObserver !== "undefined") {
       const options = {
         root: null,
         // OPTIMIZATION: 
         // Mobile: Trigger when section hits top third (-30%)
-        // Desktop: Trigger ONLY when section is in the MIDDLE of screen (-45% top, -45% bottom). 
-        // This prevents rapid state thrashing on Desktop.
-        rootMargin: isMobile ? "-30% 0px -65% 0px" : "-45% 0px -45% 0px",
+        // Desktop: Broaden detection zone to middle 30% (-35% top/bottom) to catch sections earlier/longer
+        // This prevents "dead zones" active state issues during scrolling
+        rootMargin: isMobile ? "-30% 0px -65% 0px" : "-35% 0px -35% 0px",
         threshold: 0,
       }
 
@@ -122,7 +122,7 @@ const Navbar = () => {
     // Disable spy temporarily so it doesn't revert active state while scrolling
     isClickingRef.current = true
     if (clickTimeoutRef.current) clearTimeout(clickTimeoutRef.current)
-    
+
     // Wait longer (1000ms) to ensure smooth scroll finishes before re-enabling spy
     clickTimeoutRef.current = setTimeout(() => {
       isClickingRef.current = false
@@ -160,11 +160,10 @@ const Navbar = () => {
   if (!isMobile) {
     return (
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          scrolled || !isHomePage
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || !isHomePage
             ? "bg-white/95 backdrop-blur-md border-b shadow-sm" // Switched to blur-md for better FPS
             : "bg-transparent"
-        }`}
+          }`}
       >
         <nav className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between h-20">
@@ -177,9 +176,9 @@ const Navbar = () => {
               <div className="relative">
                 <div className="absolute inset-0 bg-gray-900 blur-lg opacity-20 group-hover:opacity-40 transition-opacity" />
                 <img
-                  src="/logo.jpg"
+                  src="/logo.png"
                   alt="Harmonix Musicals"
-                  className="relative w-10 h-10 rounded-xl object-cover border border-white/20 shadow-lg"
+                  className="relative w-12 h-12 rounded-3xl object-cover border border-white/20 shadow-lg"
                 />
               </div>
               <div>
@@ -266,7 +265,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      </>
+    </>
   )
 }
 
