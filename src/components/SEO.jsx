@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async';
 export default function SEO({ title, description, keywords, image, url }) {
     const siteTitle = "Harmonix Musicals";
     const defaultDescription = "Join Harmonix Musicals, Chennai's top music school for Guitar, Piano, Violin, and Vocals. Professional training for all ages.";
-    const defaultImage = "/logo.jpg";
+    const defaultImage = "/logo.png";
     const siteUrl = "https://harmonix-musicals.com";
 
     const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
