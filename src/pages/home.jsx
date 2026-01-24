@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa"
 import Button from "../components/ui/Button"
 import Card from "../components/ui/Card"
+import { CONTACT } from "../components/constant/contact"
 
 // --- Instruments Data with refined colors ---
 const instruments = [
@@ -47,13 +48,6 @@ const instruments = [
     color: "from-purple-400 to-pink-500",
     shadow: "shadow-purple-500/30"
   }
-]
-
-const stats = [
-  { number: "500+", label: "Students", icon: <FaUsers />, color: "text-blue-500" },
-  { number: "20+", label: "Mentors", icon: <FaChalkboardTeacher />, color: "text-purple-500" },
-  { number: "50+", label: "Events", icon: <FaCalendarAlt />, color: "text-orange-500" },
-  { number: "100%", label: "Happy", icon: <FaStar />, color: "text-yellow-500" }
 ]
 
 /* -------------------- Optimized Instrument Card -------------------- */
@@ -159,14 +153,14 @@ export default function Home() {
           <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-blue-200/40 rounded-full blur-[100px] mix-blend-multiply animate-float delay-1000" />
           <div className="absolute top-[30%] left-[40%] w-[300px] h-[300px] bg-pink-200/30 rounded-full blur-[80px] mix-blend-multiply animate-float delay-2000" />
         </div>
-        
+
         {/* --- NEW UNIQUE TEXT FOR MOBILE --- 
            block: Visible by default
            md:hidden: Hidden on medium screens (Desktop/Tablet)
            font-serif italic: Unique font style
         */}
         <p className="mt-8 block md:hidden text-4xl font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">
-            Harmonix Musicals
+          Harmonix Musicals
         </p>
 
         {/* Content Container */}
@@ -282,19 +276,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- STATS SECTION ---------------- */}
-      <section className="py-2 md:py-2 bg-gray-50/50 border-y border-white/50 relative overflow-hidden">
-        {/* Decorative pattern */}
-        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#4b5563_1px,transparent_1px)] [background-size:16px_16px]" />
-
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((s, i) => (
-              <StatCard key={i} stat={s} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ---------------- CTA SECTION ---------------- */}
       <section className="py-1 md:py-2 px-4 relative overflow-hidden">
@@ -309,11 +290,13 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full sm:w-auto text-base py-4 px-10 shadow-xl shadow-purple-600/20 cursor-pointer">
-                Get Started Now
-              </Button>
-            </Link>
+            <Button
+              size="lg"
+              className="w-full sm:w-auto text-base py-4 px-10 shadow-xl shadow-purple-600/20 cursor-pointer"
+              onClick={() => window.open(CONTACT.whatsapp, '_blank')}
+            >
+              Get Started Now
+            </Button>
           </div>
         </div>
       </section>

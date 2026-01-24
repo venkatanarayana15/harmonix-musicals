@@ -58,7 +58,7 @@ const Navbar = () => {
         // Mobile: Trigger when section hits top third (-30%)
         // Desktop: Broaden detection zone to middle 30% (-35% top/bottom) to catch sections earlier/longer
         // This prevents "dead zones" active state issues during scrolling
-        rootMargin: isMobile ? "-30% 0px -65% 0px" : "-35% 0px -35% 0px",
+        rootMargin: isMobile ? "-30% 0px -65% 0px" : "-40% 0px -55% 0px",
         threshold: 0,
       }
 
@@ -161,8 +161,8 @@ const Navbar = () => {
     return (
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${scrolled || !isHomePage
-            ? "bg-white/95 backdrop-blur-md border-b shadow-sm" // Switched to blur-md for better FPS
-            : "bg-transparent"
+          ? "bg-white/95 backdrop-blur-md border-b shadow-sm" // Switched to blur-md for better FPS
+          : "bg-transparent"
           }`}
       >
         <nav className="max-w-7xl mx-auto px-6">
