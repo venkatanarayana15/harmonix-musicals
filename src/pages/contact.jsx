@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { useLocation } from "react-router-dom"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {
   FaPhoneAlt,
   FaEnvelope,
@@ -12,12 +12,14 @@ import {
   FaMusic,
   FaChartLine,
   FaComment,
+  FaCheckCircle,
 } from "react-icons/fa"
 
 import PageContainer from "../components/layout/PageContainer"
 import Button from "../components/ui/Button"
 import Card from "../components/ui/Card"
 import { CONTACT } from "../components/constant/contact"
+const contact_api = import.meta.env.VITE_CONTACT_API
 
 /* -------------------- Static Data -------------------- */
 
@@ -53,14 +55,11 @@ const contactInfo = [
 ]
 
 const instruments = [
+  "Keyboard",
   "Guitar",
   "Piano",
   "Violin",
   "Vocals",
-  "Ukulele",
-  "Drums",
-  "Flute",
-  "Saxophone",
 ]
 
 const skillLevels = ["Beginner", "Intermediate", "Advanced"]
@@ -91,6 +90,80 @@ export default function Contact() {
       }
     }
   }, [location])
+
+  const [name, setName] = useState("")
+  const [phone, setPhone] = useState("")
+  const [email, setEmail] = useState("")
+  const [instrument, setInstrument] = useState("")
+  const [skillLevel, setSkillLevel] = useState("")
+  const [message, setMessage] = useState("")
+  const [errors, setErrors] = useState({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false)
+
+  const validateForm = () => {
+    const newErrors = {}
+
+    // Phone validation: exactly 10 digits
+    const phoneRegex = /^\d{10}$/
+    if (!phoneRegex.test(phone)) {
+      newErrors.phone = "Phone number must be exactly 10 digits"
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (email && !emailRegex.test(email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    if (!validateForm()) {
+      return
+    }
+
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch(contact_api, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          instrument,
+          skillLevel,
+          message,
+        }),
+      })
+
+      if (response.ok) {
+        setShowSuccessPopup(true)
+        setName("")
+        setPhone("")
+        setEmail("")
+        setInstrument("")
+        setSkillLevel("")
+        setMessage("")
+        setErrors({})
+      } else {
+        alert("Something went wrong. Please try again.")
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error)
+      alert("Error submitting form. Please check your connection.")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <PageContainer className="pt-2 pb-2 md:pt-2 md:pb-2">
@@ -221,26 +294,47 @@ export default function Contact() {
             </h2>
 
             <form className="space-y-6">
-              <input className={inputBase} placeholder="Full Name *" required />
-              <input
-                className={inputBase}
-                placeholder="Phone Number *"
-                required
-              />
-              <input
-                className={inputBase}
-                placeholder="Email Address"
-                type="email"
-              />
+              <input className={inputBase} name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name *" required />
+              <div>
+                <input
+                  className={`${inputBase} ${errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-500/60' : ''}`}
+                  name="phone"
+                  value={phone}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, "").slice(0, 10)
+                    setPhone(value)
+                    if (errors.phone) setErrors({ ...errors, phone: null })
+                  }}
+                  placeholder="Phone Number *"
+                  maxLength={10}
+                  inputMode="numeric"
+                  required
+                />
+                {errors.phone && <p className="text-red-500 text-xs mt-1 ml-1 ">{errors.phone}</p>}
+              </div>
+              <div>
+                <input
+                  className={`${inputBase} ${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500/60' : ''}`}
+                  name="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value)
+                    if (errors.email) setErrors({ ...errors, email: null })
+                  }}
+                  placeholder="Email Address"
+                  type="email"
+                />
+                {errors.email && <p className="text-red-500 text-xs mt-1 ml-1">{errors.email}</p>}
+              </div>
 
-              <select className={inputBase} required>
+              <select className={inputBase} name="instrument" value={instrument} onChange={(e) => setInstrument(e.target.value)} required>
                 <option value="">Select Instrument</option>
                 {instruments.map((i) => (
                   <option key={i}>{i}</option>
                 ))}
               </select>
 
-              <select className={inputBase} required>
+              <select className={inputBase} name="skillLevel" value={skillLevel} onChange={(e) => setSkillLevel(e.target.value)} required>
                 <option value="">Skill Level</option>
                 {skillLevels.map((l) => (
                   <option key={l}>{l}</option>
@@ -250,21 +344,51 @@ export default function Contact() {
               <textarea
                 rows={4}
                 className={`${inputBase} resize-none`}
+                name="message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder="Your goals or message"
               />
 
               <div className="flex justify-center">
                 <Button
                   type="submit"
-                  className="w-52 justify-items-center text-white font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 cursor-pointer"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className={`w-52 justify-items-center text-white font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 cursor-pointer ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
-                  Request Free Consultation
+                  {isSubmitting ? "Sending..." : "Request Free Consultation"}
                 </Button>
               </div>
             </form>
           </Card>
         </motion.div>
       </div>
+      {/* Success Popup */}
+      {showSuccessPopup && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="bg-white rounded-2xl p-6 md:p-8 max-w-sm w-full text-center shadow-xl border border-gray-100"
+          >
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <FaCheckCircle className="text-3xl text-green-600" />
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Success!</h3>
+            <p className="text-gray-600 mb-6">
+              Successfully submitted the form. Our team will get back to you soon.
+            </p>
+            <Button
+              onClick={() => setShowSuccessPopup(false)}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-xl cursor-pointer"
+            >
+              Close
+            </Button>
+          </motion.div>
+        </div>
+      )}
     </PageContainer>
   )
 }

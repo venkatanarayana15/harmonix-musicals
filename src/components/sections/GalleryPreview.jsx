@@ -94,9 +94,10 @@ export default function GalleryPreview() {
                     <Button
                         variant="secondary"
                         size="lg"
-                        className="shadow-sm hover:shadow-lg border-gray-200 hover:border-violet-200 hover:bg-white transition-all group"
+                        // className=" hover:shadow-lg  hover:border-violet-700 hover:bg-white transition-all group cursor-pointer"
+                    className="shadow-sm justify-items-center text-white font-semibold border-gray-200 hover:border-violet-700 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 cursor-pointer"
                     >
-                        <span className="group-hover:text-violet-700 transition-colors">View Full Gallery</span>
+                        <span className=" transition-colors">View Full Gallery</span>
                     </Button>
                 </Link>
             </div>

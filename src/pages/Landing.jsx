@@ -20,27 +20,46 @@ export default function Landing() {
     }, [])
 
     useEffect(() => {
-        if (location.state && location.state.targetId) {
-            const { targetId } = location.state
-            const el = document.getElementById(targetId)
-            if (el) {
-                // Determine offset same as Navbar
-                const offset = isMobile ? 20 : 90
+        const handleScroll = () => {
+            // Priority: 1. State targetId (from Navbar), 2. Hash (from URL/Footer)
+            let targetId = null;
 
-                // PC: Smooth scroll (Premium feel)
-                // Mobile: Auto/Instant (Avoid long scroll)
-                const behavior = isMobile ? "auto" : "smooth"
-
-                window.scrollTo({
-                    top: el.offsetTop - offset,
-                    behavior: behavior,
-                    left: 0
-                })
-
-                // Clear history state to prevent jumping on reload
-                window.history.replaceState({}, document.title)
+            if (location.state && location.state.targetId) {
+                targetId = location.state.targetId;
+            } else if (location.hash) {
+                targetId = location.hash.replace('#', '');
             }
-        }
+
+            if (targetId) {
+                const el = document.getElementById(targetId)
+                if (el) {
+                    // Determine offset same as Navbar
+                    const offset = isMobile ? 20 : 90
+
+                    // PC: Smooth scroll (Premium feel)
+                    // Mobile: Auto/Instant (Avoid long scroll)
+                    const behavior = isMobile ? "auto" : "smooth"
+
+                    // Small timeout to ensure layout is ready if coming from another page
+                    setTimeout(() => {
+                        window.scrollTo({
+                            top: el.offsetTop - offset,
+                            behavior: behavior,
+                            left: 0
+                        })
+                    }, 100);
+
+                    // Clear history state to prevent jumping on reload, but keep hash if useful
+                    // actually, clearing state is good, but maybe keep hash? 
+                    // Let's clear state but maybe not hash so user knows where they are.
+                    // For now, consistent behavior:
+                    window.history.replaceState({}, document.title)
+                }
+            }
+        };
+
+        handleScroll();
+
     }, [location, isMobile])
 
     return (

@@ -17,10 +17,10 @@ export default function Footer() {
   const navigate = useNavigate();
 
   const quickLinks = [
-    { label: "Home", to: "/" },
-    { label: "Programs", to: "/learning" },
-    { label: "About Us", to: "/about" },
-    { label: "Contact", to: "/contact" }
+    { label: "Home", id: "home", to: "/#home" },
+    { label: "Programs", id: "learning", to: "/#learning" },
+    { label: "About Us", id: "about", to: "/#about" },
+    { label: "Contact", id: "contact", to: "/#contact" }
   ];
 
   return (
@@ -57,11 +57,11 @@ export default function Footer() {
 
               <div className="flex gap-2">
                 <SocialLink icon={<FaInstagram />} href={CONTACT.instagram} label="Instagram" />
-                <SocialLink icon={<FaYoutube />}  href={CONTACT.youtube} label="YouTube" />
+                <SocialLink icon={<FaYoutube />} href={CONTACT.youtube} label="YouTube" />
                 <SocialLink icon={<FaWhatsapp />} href={CONTACT.whatsapp} label="WhatsApp" />
                 <SocialLink icon={<FaFacebook />} href={CONTACT.facebook} label="Facebook" />
                 <SocialLink icon={<FaLinkedin />} href={CONTACT.linkedin} label="LinkedIn" />
-                
+
               </div>
             </div>
           </div>

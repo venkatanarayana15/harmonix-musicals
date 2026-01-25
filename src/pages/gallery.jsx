@@ -247,9 +247,14 @@ export default function Gallery() {
                         <div className="p-5 flex-1 flex flex-col">
                           <div className="flex items-center justify-between mb-2">
                             {/* UPDATED CATEGORY TAG TO MATCH VIDEOS */}
-                            <span className="text-xs font-bold tracking-wider uppercase text-blue-600 bg-blue-50 px-2 py-1 rounded">
+
+                            {/* <span className="text-xs font-bold tracking-wider uppercase text-blue-600 bg-blue-50 px-2 py-1 rounded">
                               {item.category || "General"}
-                            </span>
+                            </span> */}
+
+                            <h3 className="text-lg font-semibold px-2 py-1 rounded text-blue-600 bg-blue-50 leading-tight line-clamp-2" title={item.title}>
+                              {item.title}
+                            </h3>
 
                             {/* Download Button */}
                             <button
@@ -269,9 +274,7 @@ export default function Gallery() {
                             </button>
                           </div>
 
-                          <h3 className="text-lg font-bold text-gray-900 leading-tight line-clamp-2" title={item.title}>
-                            {item.title}
-                          </h3>
+                        
                         </div>
                       </div>
                     );
