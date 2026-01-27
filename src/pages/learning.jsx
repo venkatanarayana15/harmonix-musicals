@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import PageContainer from "../components/layout/PageContainer";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
-import { Link } from "react-router-dom";
+import { CONTACT } from "../components/constant/contact";
 
 const instruments = [
     {
@@ -97,21 +97,26 @@ export default function Learning() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-center relative py-10 md:py-14 px-5 md:px-6 rounded-3xl overflow-hidden"
+                className="text-center relative py-10 md:py-14 px-5 md:px-6 rounded-3xl overflow-hidden bg-slate-500 text-white"
             >
-                <div className="absolute inset-0 bg-linear-to-r from-gray-800/50 to-gray-800/50 backdrop-blur-md" />
+
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/60 to-indigo-400/60 backdrop-blur-md" />
                 <div className="relative z-10">
-                    <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
+                    <h2 className="text-white text-2xl md:text-4xl font-bold mb-4 md:mb-6">
                         Not sure which instrument to choose?
                     </h2>
                     <p className="text-gray-300 mb-6 md:mb-8 text-base md:text-lg max-w-xl mx-auto">
                         Book a free consultation session with our experts and let us help you find your perfect match.
                     </p>
-                    <Link to="/contact">
-                        <Button size="lg" variant="primary">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Button
+                            size="lg"
+                            className="w-full sm:w-auto text-base py-4 px-10 shadow-xl shadow-purple-600/20 cursor-pointer"
+                            onClick={() => window.open(CONTACT.whatsapp, '_blank')}
+                        >
                             Book Free Trial
                         </Button>
-                    </Link>
+                    </div>
                 </div>
             </motion.div>
         </PageContainer>

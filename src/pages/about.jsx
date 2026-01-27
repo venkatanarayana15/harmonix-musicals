@@ -311,23 +311,28 @@ export default function About() {
       </section>
 
       {/* --- CTA SECTION --- */}
-      <section className="py-12 bg-slate-500 text-white relative">
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-purple-500 via-slate-900 to-slate-900"></div>
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to start your journey?</h2>
-          <p className="text-slate-300 text-base mb-8 max-w-xl mx-auto">
-            Join a community that celebrates every note. Whether you are a beginner or an advanced player.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="px-6 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-purple-50 transition-colors shadow-lg text-sm cursor-pointer">
-              Book a Free Trial
-            </button>
-            <button className="px-6 py-3 bg-slate-900 text-white font-bold rounded-full transition-colors shadow-lg text-sm flex items-center justify-center gap-2 cursor-pointer">
-              View Programs <FaArrowRight size={12} />
-            </button>
-          </div>
-        </div>
-      </section>
+      <section className="relative py-12 bg-slate-500 text-white rounded-3xl overflow-hidden">
+  {/* Background Overlay with Gradient & Blur */}
+  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/60 to-indigo-400/60 backdrop-blur-md" /> 
+  
+  <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+   <h2 className="text-white text-2xl md:text-4xl font-extrabold mb-4 tracking-tight leading-tight">
+  Ready to start your journey?
+</h2>
+    <p className="text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto">
+      Join a community that celebrates every note. Whether you are a beginner or an advanced player.
+    </p>
+    
+    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <button className="w-full sm:w-auto px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-sm cursor-pointer">
+        Book a Free Trial
+      </button>
+      <button className="w-full sm:w-auto px-8 py-3 bg-slate-900 text-white font-bold rounded-full hover:bg-slate-800 transition-all active:scale-95 shadow-lg text-sm flex items-center justify-center gap-2 cursor-pointer border border-slate-700">
+        View Programs <FaArrowRight size={12} />
+      </button>
+    </div>
+  </div>
+</section>
     </PageContainer>
   );
 }
