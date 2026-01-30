@@ -234,9 +234,10 @@ const Navbar = () => {
       <div className="fixed top-2 inset-x-0 z-50 px-2 flex justify-between items-center pointer-events-none">
         <div className="flex items-center gap-2 pointer-events-auto bg-white/80 dark:bg-gray-200/80 backdrop-blur-xl border-1 border-white/30 dark:border-gray-800/30 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full py-1.5 px-3">
           <div className="relative w-8 h-8 rounded-full overflow-hidden shadow-inner border border-white/20">
-            <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
+            <img src="/logo.png" alt="Logo" className="w-full h-full object-cover"
+             />
           </div>
-          <span className="text-sm font-bold font-serif italic text-transparent bg-clip-text bg-linear-to-r from-purple-800 to-blue-600 pr-1">Harmonix</span>
+          <span className="text-sm font-bold font-serif italic text-transparent bg-clip-text bg-linear-to-r from-purple-800 to-blue-600 pr-1" onClick={() => handleNavigation("home")}>Harmonix</span>
         </div>
 
         <div className="pointer-events-auto">
