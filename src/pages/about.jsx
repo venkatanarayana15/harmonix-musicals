@@ -126,57 +126,73 @@ export default function About() {
             </div>
           ) : (
             <>
-              {/* GRID CONFIGURATION:
-                  grid-cols-2 (Mobile)
-                  md:grid-cols-3 (Tablet)
-                  lg:grid-cols-4 (Desktop/PC) 
-              */}
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+              {/* GRID CONFIGURATION: Pro Max Layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                 {visibleMentors.map((mentor, index) => (
                   <motion.div
                     key={mentor.id || index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    className="group flex flex-col items-center text-center p-4 rounded-xl bg-white border border-slate-100 shadow-sm hover:shadow-lg hover:border-purple-100 transition-all duration-300 relative overflow-hidden"
+                    viewport={{ once: true, margin: "-50px" }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="group relative"
                   >
-                    {/* Hover Gradient Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    {/* Card Container */}
+                    <div className="relative h-full bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-500 ease-out border border-slate-100 dark:border-slate-700/50 flex flex-col items-center text-center overflow-hidden hover:-translate-y-2">
 
-                    {/* Image Area - Reduced Size */}
-                    <div className="mb-3 relative z-10">
-                      <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-slate-100 shadow-sm group-hover:border-purple-200 group-hover:shadow-md transition-all duration-300 mx-auto">
-                        {mentor.img ? (
-                          <img
-                            src={mentor.img}
-                            alt={mentor.name}
-                            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center bg-slate-100 text-slate-300">
-                            <FaUsers size={24} />
+                      {/* Decorative Background Gradient (Subtle) */}
+                      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-slate-50 to-transparent dark:from-slate-700/20 dark:to-transparent opacity-50 transition-opacity duration-500 group-hover:opacity-100"></div>
+
+                      {/* Image Wrapper with Dynamic Ring */}
+                      <div className="relative mb-5 z-10 w-28 h-28 md:w-32 md:h-32">
+                        {/* Animated Ring on Hover */}
+                        <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500"></div>
+
+                        <div className="relative w-full h-full rounded-full p-1 bg-white dark:bg-slate-800 shadow-sm overflow-hidden">
+                          {mentor.img ? (
+                            <img
+                              src={mentor.img}
+                              alt={mentor.name}
+                              className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="w-full h-full rounded-full bg-slate-100 dark:bg-slate-700 flex items-center justify-center text-slate-300">
+                              <FaUsers size={32} />
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Badge Icon */}
+                        <div className="absolute bottom-1 right-1 w-8 h-8 bg-white dark:bg-slate-800 rounded-full flex items-center justify-center shadow-md border border-slate-50 dark:border-slate-700 text-purple-600 z-20 group-hover:scale-110 transition-transform duration-300">
+                          <FaMusic className="text-xs" />
+                        </div>
+                      </div>
+
+                      {/* Content */}
+                      <div className="relative z-10 w-full flex-grow flex flex-col justify-between">
+                        <div>
+                          <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-purple-600 transition-colors duration-300">
+                            {mentor.name}
+                          </h4>
+                          <div className="inline-block px-3 py-1 bg-purple-50 dark:bg-purple-900/20 rounded-full mb-3">
+                            <p className="text-[11px] font-bold tracking-widest text-purple-600 dark:text-purple-400 uppercase">
+                              {mentor.instrument || "Instructor"}
+                            </p>
                           </div>
-                        )}
-                      </div>
-                      <div className="absolute bottom-1 right-0 md:right-1 bg-white rounded-full p-1.5 shadow-sm text-purple-600 border border-purple-50 text-[10px] md:text-xs">
-                        <FaMusic />
-                      </div>
-                    </div>
+                          <p className="text-slate-500 dark:text-slate-400 text-xs leading-relaxed line-clamp-3 mb-4">
+                            {mentor.description || "Passionate educator dedicated to nurturing musical talent and creative expression."}
+                          </p>
+                        </div>
 
-                    {/* Content Area - Compact Text */}
-                    <div className="w-full relative z-10">
-                      <h4 className="text-sm md:text-lg font-bold text-slate-900 leading-tight mb-1 truncate px-1">
-                        {mentor.name}
-                      </h4>
-                      <p className="text-purple-600 text-[10px] md:text-xs font-bold uppercase tracking-wider mb-2">
-                        {mentor.instrument || "Musician"}
-                      </p>
+                        {/* Social/Action Placeholder (Could be expanded) */}
+                        <div className="pt-4 border-t border-slate-50 dark:border-slate-700/50 w-full flex justify-center gap-3 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+                          <span className="w-2 h-2 rounded-full bg-purple-400"></span>
+                          <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                          <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
+                        </div>
+                      </div>
 
-                      <p className="text-slate-500 text-[10px] md:text-xs leading-relaxed line-clamp-3 px-1">
-                        {mentor.description || "Dedicated to guiding students on their musical journey."}
-                      </p>
                     </div>
                   </motion.div>
                 ))}
@@ -312,27 +328,27 @@ export default function About() {
 
       {/* --- CTA SECTION --- */}
       <section className="relative py-12 bg-slate-500 text-white rounded-3xl overflow-hidden">
-  {/* Background Overlay with Gradient & Blur */}
-  <div className="absolute inset-0 bg-gradient-to-r from-blue-400/60 to-indigo-400/60 backdrop-blur-md" /> 
-  
-  <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-   <h2 className="text-white text-2xl md:text-4xl font-extrabold mb-4 tracking-tight leading-tight">
-  Ready to start your journey?
-</h2>
-    <p className="text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto">
-      Join a community that celebrates every note. Whether you are a beginner or an advanced player.
-    </p>
-    
-    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <button className="w-full sm:w-auto px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-sm cursor-pointer">
-        Book a Free Trial
-      </button>
-      <button className="w-full sm:w-auto px-8 py-3 bg-slate-900 text-white font-bold rounded-full hover:bg-slate-800 transition-all active:scale-95 shadow-lg text-sm flex items-center justify-center gap-2 cursor-pointer border border-slate-700">
-        View Programs <FaArrowRight size={12} />
-      </button>
-    </div>
-  </div>
-</section>
+        {/* Background Overlay with Gradient & Blur */}
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/60 to-indigo-400/60 backdrop-blur-md" />
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-white text-2xl md:text-4xl font-extrabold mb-4 tracking-tight leading-tight">
+            Ready to start your journey?
+          </h2>
+          <p className="text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto">
+            Join a community that celebrates every note. Whether you are a beginner or an advanced player.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button className="w-full sm:w-auto px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-sm cursor-pointer">
+              Book a Free Trial
+            </button>
+            <button className="w-full sm:w-auto px-8 py-3 bg-slate-900 text-white font-bold rounded-full hover:bg-slate-800 transition-all active:scale-95 shadow-lg text-sm flex items-center justify-center gap-2 cursor-pointer border border-slate-700">
+              View Programs <FaArrowRight size={12} />
+            </button>
+          </div>
+        </div>
+      </section>
     </PageContainer>
   );
 }

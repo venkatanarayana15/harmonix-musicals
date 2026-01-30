@@ -25,7 +25,7 @@ const CONTACTS = [
 
 export default function StickyContactBar() {
   return (
-    <div className="fixed z-[9998] right-4 bottom-28 md:bottom-8 pointer-events-none"> {/* Adjusted bottom position to avoid nav overlap */}
+    <div className="fixed z-[9998] right-4 bottom-28 md:bottom-4 pointer-events-none"> {/* Adjusted bottom position to avoid nav overlap */}
       <div className="flex flex-col gap-3 p-2 bg-white/80 dark:bg-gray-200/80 backdrop-blur-xl border-1 border-white/30 dark:border-gray-800/30 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full pointer-events-auto">
 
         {CONTACTS.map(({ label, href, icon: Icon, color }, index) => (
@@ -41,7 +41,7 @@ export default function StickyContactBar() {
             whileTap={{ scale: 0.9 }}
             className={`
               relative
-              w-10 h-10 md:w-12 md:h-12
+              w-8 h-8 md:w-10 md:h-10
               flex items-center justify-center
               rounded-full
               text-white text-xl md:text-2xl

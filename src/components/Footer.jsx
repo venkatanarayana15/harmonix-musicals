@@ -25,7 +25,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-white border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 pb-24 md:pb-8">
 
         {/* MAIN GRID */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -131,33 +131,72 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-8 bg-gray-100 rounded-xl p-5 md:p-6 text-black flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-center md:text-left">
-            <h3 className="text-lg md:text-xl font-semibold mb-1">
-              Start Your Music Journey
-            </h3>
-            <p className="text-gray-700 text-sm">
-              Book a free trial class today
-            </p>
-          </div>
+        {/* CTA - Pro Max UI (Glassmorphism) */}
+        <div className="mt-8 relative overflow-hidden rounded-2xl p-1 md:p-1 bg-slate-500">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-400/60 to-indigo-400/60 backdrop-blur-md"></div>
+          <div className="relative bg-white/40 dark:bg-gray-900/40 backdrop-blur-2xl border border-white/50 dark:border-gray-700/50 rounded-xl p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl md:shadow-purple-500/10">
 
-          <Button
-            onClick={() => navigate("/contact")}
-            className="px-6 py-2.5 bg-gradient-to-r from-yellow-500 to-orange-500
-                       text-white text-sm font-semibold rounded-lg"
-          >
-            Book Free Trial
-          </Button>
+            <div className="text-center md:text-left z-10">
+              <h3 className="text-2xl md:text-3xl font-black mb-2 bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300">
+                Start Your Music Journey
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 font-medium text-sm md:text-base">
+                Book a free trial class today in <span className="text-purple-600 font-bold">Western Music</span>
+              </p>
+            </div>
+
+            <div className="relative z-10 group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-orange-600 rounded-lg blur opacity-40 group-hover:opacity-75 transition duration-200"></div>
+              <Button
+                onClick={() => window.open(CONTACT.whatsapp, '_blank')}
+                className="relative px-8 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white text-base font-bold rounded-xl shadow-xl shadow-orange-500/20 transform group-hover:scale-[1.02] transition-all duration-200"
+              >
+                Book Free Trial
+              </Button>
+            </div>
+
+            {/* Decorative Shine */}
+            <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-white/20 blur-2xl rounded-full pointer-events-none"></div>
+          </div>
         </div>
 
-        {/* BOTTOM */}
-        <div className="mt-6 pt-4 mb-18 md:mb-0 border-t-amber-50 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-          <p>© {currentYear} Harmonix Musicals</p>
-          <div className="flex gap-3">
-            <a href="#" className="hover:text-gray-900">Privacy</a>
-            <a href="#" className="hover:text-gray-900">Terms</a>
-            <a href="#" className="hover:text-gray-900">Refund</a>
+        {/* BOTTOM - Unified Ultra Capsule */}
+        <div className="mt-4 pt-0 pb-0 flex justify-center items-center px-4 md:px-0">
+          <div className="group relative w-full md:w-auto">
+            <div className="absolute -inset-1 bg-gradient-to-r from-purple-500/30 via-blue-500/30 to-purple-500/30 rounded-3xl md:rounded-full blur-xl opacity-0 group-hover:opacity-70 transition duration-700"></div>
+
+            <div className="relative bg-white/90 dark:bg-gray-900/90 backdrop-blur-3xl border border-white/50 dark:border-gray-700/50 rounded-3xl md:rounded-full py-4 px-6 md:py-3 md:pl-4 md:pr-8 flex flex-col md:flex-row items-center gap-4 md:gap-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:scale-[1.01] transition-transform duration-300">
+
+              {/* Brand Section */}
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center border border-white/20">
+                  <img src="/logo.png" alt="Logo" className="w-full h-full object-cover rounded-full p-0.5" />
+                </div>
+                <span className="text-xs font-bold text-gray-800 dark:text-gray-200 tracking-wide">
+                  © {currentYear} Harmonix Musicals
+                </span>
+              </div>
+
+              {/* Divider (Hidden on mobile) */}
+              <div className="hidden md:block w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+
+              {/* Links Section */}
+              <div className="flex items-center gap-6">
+                {[
+                  { label: "Privacy", icon: "🔒" },
+                  { label: "Terms", icon: "📜" },
+                  { label: "Support", icon: "💬" }
+                ].map(link => (
+                  <a
+                    key={link.label}
+                    href="#"
+                    className="text-xs font-semibold text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors flex items-center gap-2 group/link"
+                  >
+                    <span className="group-hover/link:-translate-y-0.5 transition-transform duration-200">{link.label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
