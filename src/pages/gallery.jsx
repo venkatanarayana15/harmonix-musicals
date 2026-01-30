@@ -128,7 +128,7 @@ export default function Gallery() {
   return (
     <div className="min-h-screen bg-neutral-50">
       <SEO
-        title="Gallery"
+        title="Gallery - Student Performances & Events"
         description="Explore our gallery of musical performances, student achievements, and events."
         keywords="music gallery, performance photos, student videos, chennai music events"
       />
@@ -274,7 +274,7 @@ export default function Gallery() {
                             </button>
                           </div>
 
-                        
+
                         </div>
                       </div>
                     );

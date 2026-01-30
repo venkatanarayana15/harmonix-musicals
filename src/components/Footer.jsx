@@ -170,7 +170,7 @@ export default function Footer() {
               {/* Brand Section */}
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 flex items-center justify-center border border-white/20">
-                  <img src="/logo.png" alt="Logo" className="w-full h-full object-cover rounded-full p-0.5" />
+                  <img src="/logo.png" alt="footer bottom logo" className="w-full h-full object-cover rounded-full p-0.5" />
                 </div>
                 <span className="text-xs font-bold text-gray-800 dark:text-gray-200 tracking-wide">
                   © {currentYear} Harmonix Musicals

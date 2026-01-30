@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import PageContainer from "../components/layout/PageContainer";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
+import SEO from "../components/SEO";
 import { CONTACT } from "../components/constant/contact";
 
 const instruments = [
@@ -53,9 +54,13 @@ export default function Learning() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center mb-8 md:mb-12"
             >
-                <h2 className="text-3xl md:text-5xl font-black mb-4 md:mb-6">
+                <SEO
+                    title="Learning Curriculum"
+                    description="Explore the music curriculum at Harmonix Musicals. Comprehensive lessons for Guitar, Piano, Violin, and Vocals for all skill levels."
+                />
+                <h1 className="text-3xl md:text-5xl font-black mb-4 md:mb-6">
                     Our <span className="bg-linear-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">Curriculum</span>
-                </h2>
+                </h1>
                 <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
                     Choose your instrument and begin your musical journey with structured lessons, expert guidance, and a supportive community.
                 </p>

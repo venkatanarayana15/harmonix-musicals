@@ -73,11 +73,11 @@ const InstrumentCard = ({ item, onClick }) => {
       >
         <div className="flex flex-row items-center gap-5 p-4 h-full relative overflow-hidden">
           {/* Background Glow */}
-          <div className={`absolute -right-4 -top-4 w-24 h-24 bg-gradient-to-br ${item.color} opacity-10 blur-2xl rounded-full`} />
+          <div className={`absolute -right-4 -top-4 w-24 h-24 bg-linear-to-br ${item.color} opacity-10 blur-2xl rounded-full`} />
 
           {/* Glowing Icon */}
           <div className={`
-                relative z-10 p-4 rounded-2xl bg-gradient-to-br ${item.color} 
+                relative z-10 p-4 rounded-2xl bg-linear-to-br ${item.color}
                 text-white text-3xl shadow-lg ${item.shadow}
                 shrink-0 flex items-center justify-center aspect-square w-16 h-16
             `}>
@@ -124,6 +124,8 @@ const StatCard = ({ stat }) => (
   </div>
 )
 
+import SEO from "../components/SEO"
+
 /* -------------------- Main Home Page -------------------- */
 export default function Home() {
   const heroRef = useRef(null)
@@ -139,6 +141,11 @@ export default function Home() {
   return (
     // Removed mt-[80px] as per user request to remove top gap
     <div className="text-gray-900 overflow-x-hidden font-sans min-h-screen rounded-2xl mt-0 md:mt-0">
+      <SEO
+        title="Home"
+        description="Harmonix Musicals - premier music education in Chennai. Guitar, Piano, Violin, and Vocal training for all ages."
+        keywords="music class chennai, guitar lessons, piano class, violin teacher, vocal training, music school"
+      />
 
       {/* ---------------- HERO SECTION ---------------- */}
       <section
@@ -159,7 +166,7 @@ export default function Home() {
            md:hidden: Hidden on medium screens (Desktop/Tablet)
            font-serif italic: Unique font style
         */}
-        <p className="mt-8 block md:hidden text-4xl font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">
+        <p className="mt-8 block md:hidden text-4xl font-serif italic font-bold text-transparent bg-clip-text bg-linear-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">
 
         </p>
 
@@ -173,8 +180,8 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="mb-8 relative group"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-            <div className="relative w-34 h-34 md:w-32 md:h-32 mx-auto rounded-full p-1 bg-gradient-to-br from-white to-gray-200 shadow-2xl mt-4 md:mt-3">
+            <div className="absolute inset-0 bg-linear-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+            <div className="relative w-34 h-34 md:w-32 md:h-32 mx-auto rounded-full p-1 bg-linear-to-br from-white to-gray-200 shadow-2xl mt-4 md:mt-3">
               <img src="/logo.png" alt="Harmonix home Logo" title="start image" className="w-full h-full rounded-full object-cover border-2 border-white" />
             </div>
           </motion.div>
@@ -200,7 +207,7 @@ export default function Home() {
             className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-black mb-6 leading-tight tracking-tight"
           >
             <span className="block text-gray-900 mb-2 drop-shadow-sm">Find Your</span>
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 animate-gradient-x bg-[length:200%_auto]">
+            <span className="bg-clip-text text-transparent bg-linear-to-r from-purple-600 via-blue-600 to-purple-600 animate-gradient-x bg-size-[200%_auto]">
               Rhythm & Soul
             </span>
           </motion.h1>
@@ -219,7 +226,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row w-full max-w-md gap-4 justify-center mx-auto mt-[0px] md:-mt-5"
+            className="flex flex-col sm:flex-row w-full max-w-md gap-4 justify-center mx-auto mt-0 md:-mt-5"
           >
             <Button
               size="lg"
@@ -248,7 +255,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-3xl font-black mb-4">
-              World-Class <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Training</span>
+              World-Class <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">Training</span>
             </h2>
             <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-medium">
               Comprehensive curriculum designed for modern musicians.
@@ -279,11 +286,11 @@ export default function Home() {
 
       {/* ---------------- CTA SECTION ---------------- */}
       <section className="py-1 md:py-2 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-50/20 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-purple-50/20 to-transparent pointer-events-none" />
 
         <div className="max-w-4xl mx-auto text-center relative z-10 bg-white/60 backdrop-blur-2xl p-8 md:p-4 rounded-[2.5rem] border border-white shadow-2xl shadow-purple-900/5">
           <h2 className="text-3xl md:text-3xl font-black mb-6 leading-tight text-gray-900">
-            Start Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">Journey</span> Today
+            Start Your <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-600 to-pink-600">Journey</span> Today
           </h2>
           <p className="text-gray-600 mb-10 max-w-xl mx-auto text-lg leading-relaxed">
             Experience the joy of music with a free demo session. No commitment required, just passion.

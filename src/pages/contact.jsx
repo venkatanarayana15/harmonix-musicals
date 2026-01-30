@@ -18,6 +18,7 @@ import {
 import PageContainer from "../components/layout/PageContainer"
 import Button from "../components/ui/Button"
 import Card from "../components/ui/Card"
+import SEO from "../components/SEO"
 import { CONTACT } from "../components/constant/contact"
 const contact_api = import.meta.env.VITE_CONTACT_API
 
@@ -174,6 +175,10 @@ export default function Contact() {
       </div>
 
       {/* Header */}
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Harmonix Musicals. Book a free music trial in Chennai for Guitar, Piano, Violin, and Vocals."
+      />
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -183,12 +188,12 @@ export default function Contact() {
           HARMONIX MUSICALS
         </span>
 
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mt-3">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mt-3">
           Start Your{" "}
           <span className="bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 bg-clip-text text-transparent">
             Music Journey
           </span>
-        </h2>
+        </h1>
 
 
 

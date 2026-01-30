@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { FaMusic, FaUsers, FaHeart, FaStar, FaQuoteLeft, FaArrowRight, FaChevronDown, FaChevronUp } from "react-icons/fa";
 import PageContainer from "../components/layout/PageContainer";
+import SEO from "../components/SEO";
 
 const MENTORS_API = import.meta.env.VITE_MENTOR_API;
 
@@ -81,6 +82,10 @@ export default function About() {
 
   return (
     <PageContainer>
+      <SEO
+        title="About Us"
+        description="Learn about Harmonix Musicals' philosphy, expert mentors, and our mission to bridge academic music education with creative expression."
+      />
       {/* --- HERO SECTION --- */}
       <section className="relative pt-12 pb-16 overflow-hidden bg-slate-50">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
@@ -96,12 +101,12 @@ export default function About() {
               <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Est. 2025</span>
             </div>
 
-            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.1]">
+            <h1 className="text-4xl md:text-6xl font-bold text-slate-900 tracking-tight mb-6 leading-[1.1]">
               Does your sound <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600">
                 have a home?
               </span>
-            </h2>
+            </h1>
 
             <p className="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed px-4 font-light">
               Harmonix is a sanctuary for sound, where classical tradition meets the edge of contemporary innovation.
