@@ -70,7 +70,7 @@ const inputBase =
 
 /* -------------------- Component -------------------- */
 
-export default function Contact() {
+export default function Contact({ seoDisabled = false }) {
   const location = useLocation()
 
   useEffect(() => {
@@ -175,10 +175,12 @@ export default function Contact() {
       </div>
 
       {/* Header */}
-      <SEO
-        title="Contact Us"
-        description="Get in touch with Harmonix Musicals. Book a free music trial in Chennai for Guitar, Piano, Violin, and Vocals."
-      />
+      {!seoDisabled && (
+        <SEO
+          title="Contact Us"
+          description="Get in touch with Harmonix Musicals. Book a free music trial in Chennai for Guitar, Piano, Violin, and Vocals."
+        />
+      )}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}

@@ -74,11 +74,11 @@ export default function Landing() {
             </section>
 
             <section id="about">
-                <About />
+                <About seoDisabled={true} />
             </section>
 
             <section id="learning">
-                <Learning />
+                <Learning seoDisabled={true} />
             </section>
 
             <section id="gallery">
@@ -86,7 +86,7 @@ export default function Landing() {
             </section>
 
             <section id="contact">
-                <Contact />
+                <Contact seoDisabled={true} />
             </section>
 
             <StickyContactBar />

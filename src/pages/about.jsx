@@ -6,7 +6,7 @@ import SEO from "../components/SEO";
 
 const MENTORS_API = import.meta.env.VITE_MENTOR_API;
 
-export default function About() {
+export default function About({ seoDisabled = false }) {
   const [mentors, setMentors] = useState([]);
   const [showAll, setShowAll] = useState(false);
 
@@ -82,10 +82,12 @@ export default function About() {
 
   return (
     <PageContainer>
-      <SEO
-        title="About Us"
-        description="Learn about Harmonix Musicals' philosphy, expert mentors, and our mission to bridge academic music education with creative expression."
-      />
+      {!seoDisabled && (
+        <SEO
+          title="About Us"
+          description="Learn about Harmonix Musicals' philosphy, expert mentors, and our mission to bridge academic music education with creative expression."
+        />
+      )}
       {/* --- HERO SECTION --- */}
       <section className="relative pt-12 pb-16 overflow-hidden bg-slate-50">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>

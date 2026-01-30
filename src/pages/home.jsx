@@ -5,7 +5,6 @@ import {
   FaGuitar,
   FaMusic,
   FaMicrophoneAlt,
-  FaStar,
   FaUsers,
   FaChalkboardTeacher,
   FaCalendarAlt
@@ -124,7 +123,7 @@ const StatCard = ({ stat }) => (
   </div>
 )
 
-import SEO from "../components/SEO"
+
 
 /* -------------------- Main Home Page -------------------- */
 export default function Home() {
@@ -141,11 +140,6 @@ export default function Home() {
   return (
     // Removed mt-[80px] as per user request to remove top gap
     <div className="text-gray-900 overflow-x-hidden font-sans min-h-screen rounded-2xl mt-0 md:mt-0">
-      <SEO
-        title="Home"
-        description="Harmonix Musicals - premier music education in Chennai. Guitar, Piano, Violin, and Vocal training for all ages."
-        keywords="music class chennai, guitar lessons, piano class, violin teacher, vocal training, music school"
-      />
 
       {/* ---------------- HERO SECTION ---------------- */}
       <section

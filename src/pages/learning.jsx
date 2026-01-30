@@ -37,7 +37,7 @@ const instruments = [
     },
 ];
 
-export default function Learning() {
+export default function Learning({ seoDisabled = false }) {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -54,10 +54,12 @@ export default function Learning() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-center mb-8 md:mb-12"
             >
-                <SEO
-                    title="Learning Curriculum"
-                    description="Explore the music curriculum at Harmonix Musicals. Comprehensive lessons for Guitar, Piano, Violin, and Vocals for all skill levels."
-                />
+                {!seoDisabled && (
+                    <SEO
+                        title="Learning Curriculum"
+                        description="Explore the music curriculum at Harmonix Musicals. Comprehensive lessons for Guitar, Piano, Violin, and Vocals for all skill levels."
+                    />
+                )}
                 <h1 className="text-3xl md:text-5xl font-black mb-4 md:mb-6">
                     Our <span className="bg-linear-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">Curriculum</span>
                 </h1>
