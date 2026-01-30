@@ -3,6 +3,7 @@ import { motion } from "framer-motion"
 import { HiHome, HiInformationCircle, HiAcademicCap, HiMail, HiPhotograph } from "react-icons/hi"
 import { useLocation, useNavigate } from "react-router-dom"
 import Button from "../ui/Button"
+import { CONTACT } from "../constant/contact"
 
 const SECTIONS = ["home", "about", "learning", "gallery", "contact"]
 
@@ -229,35 +230,57 @@ const Navbar = () => {
   // ========== MOBILE ==========
   return (
     <>
-      {/* MOBILE BOTTOM NAV - Unified Sticky Bar */}
-      <div className="fixed bottom-0 inset-x-0 z-50 opacity-90 bg-gray-300 backdrop-blur-md">
-        <div className="shadow-sm">
-          <div className="flex items-center justify-around px-8 py-0.5 relative">
+      {/* MOBILE TOP BAR - Double Glass Neumorphism */}
+      <div className="fixed top-2 inset-x-0 z-50 px-2 flex justify-between items-center pointer-events-none">
+        <div className="flex items-center gap-2 pointer-events-auto bg-white/80 dark:bg-gray-200/80 backdrop-blur-xl border-1 border-white/30 dark:border-gray-800/30 shadow-[0_8px_30px_rgb(0,0,0,0.12)] rounded-full py-1.5 px-3">
+          <div className="relative w-8 h-8 rounded-full overflow-hidden shadow-inner border border-white/20">
+            <img src="/logo.png" alt="Logo" className="w-full h-full object-cover" />
+          </div>
+          <span className="text-sm font-bold font-serif italic text-transparent bg-clip-text bg-linear-to-r from-purple-800 to-blue-600 pr-1">Harmonix</span>
+        </div>
+
+        <div className="pointer-events-auto">
+          <Button
+            onClick={() => window.open(CONTACT.whatsapp, '_blank')}
+            size="sm"
+            className="shadow-lg shadow-purple-500/20 text-xs py-1.5 px-3 rounded-full border-2 border-white/20"
+          >
+            Join
+          </Button>
+        </div>
+      </div>
+
+      {/* MOBILE BOTTOM NAV - Docked Double Glass Neumorphism */}
+      <div className="fixed bottom-0 inset-x-0 z-50 flex justify-center pointer-events-none">
+        <div className="bg-white/80 dark:bg-gray-200/80 backdrop-blur-xl border-t-2 border-x-2 border-white/30 dark:border-gray-800/30 shadow-[0_-8px_30px_rgb(0,0,0,0.12)] rounded-t-3xl pointer-events-auto w-full transition-all duration-300 pb-0"> {/* Added pb-2 for safe area look */}
+          <div className="flex items-center justify-between px-6 py-3 relative"> {/* Increased spacing for docked look */}
             {navLinks.map(link => {
               const isActive = activeSection === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => handleNavigation(link.id)}
-                  className={`flex flex-col items-center justify-center p-2 rounded-xl transition-all duration-300 ease-out w-full active:scale-90
-                                            ${isActive ? "text-white" : "text-gray-500 hover:text-gray-300"}`}
+                  className="relative flex flex-col items-center justify-center p-2 group w-full"
                 >
-                  <div className={`mb-1 transition-transform duration-300 ease-out ${isActive ? "-translate-y-1" : ""}`}>
-                    <div className={`w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full transition-colors duration-300
-                      ${isActive ? "bg-black text-white" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}>
-                      <span className="text-3xl">{link.icon}</span>
-                    </div>
-                  </div>
-                  <span className={`text-[12px] font-extrabold transition-opacity duration-300 ease-out ${isActive ? "opacity-100 text-indigo-900" : "opacity-0 hidden text-gray-700"}`}>
-                    {link.name}
-                  </span>
                   {isActive && (
                     <motion.div
-                      layoutId="mobileIndicator"
-                      className="absolute bottom-1 w-10 h-2 bg-black rounded-full"
-                      transition={{ type: "spring", bounce: 0.3, duration: 0.4 }}
+                      layoutId="mobileActivePill"
+                      className="absolute inset-0 bg-white dark:bg-gray-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] border border-gray-100 dark:border-gray-700 rounded-2xl"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                     />
                   )}
+
+                  <div className="relative z-10 flex flex-col items-center gap-0.5">
+                    <span
+                      className={`text-xl transition-all duration-200 drop-shadow-[1px_2px_2px_rgba(0,0,0,0.15)]
+                            ${isActive ? "text-gray-900 scale-110" : "text-gray-700 hover:text-gray-900"}`}
+                    >
+                      {link.icon}
+                    </span>
+                    <span className={`text-[10px] font-bold tracking-wide ${isActive ? "text-gray-900" : "text-gray-600"}`}>
+                      {link.name}
+                    </span>
+                  </div>
                 </button>
               )
             })}

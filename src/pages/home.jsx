@@ -137,14 +137,14 @@ export default function Home() {
   }, [])
 
   return (
-    // Added mt-[20px] md:mt-0 to apply 20px margin-top only on mobile devices
-    <div className="text-gray-900 overflow-x-hidden font-sans min-h-screen rounded-2xl mt-[20px] md:mt-0">
+    // Removed mt-[80px] as per user request to remove top gap
+    <div className="text-gray-900 overflow-x-hidden font-sans min-h-screen rounded-2xl mt-0 md:mt-0">
 
       {/* ---------------- HERO SECTION ---------------- */}
       <section
         id="hero"
         ref={heroRef}
-        className=" flex flex-col items-center justify-center px-4 overflow-hidden pt-0 md:pt-17 -mt-4 "
+        className=" flex flex-col items-center justify-center px-0 overflow-hidden pt-0 md:pt-17 -mt-4 "
       >
         {/* Dynamic Background Elements */}
         {/* Decorative background - hidden on small screens to prevent overflow */}
@@ -160,7 +160,7 @@ export default function Home() {
            font-serif italic: Unique font style
         */}
         <p className="mt-8 block md:hidden text-4xl font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">
-          Harmonix Musicals
+
         </p>
 
         {/* Content Container */}
