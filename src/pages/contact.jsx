@@ -105,6 +105,11 @@ export default function Contact({ seoDisabled = false }) {
   const validateForm = () => {
     const newErrors = {}
 
+    // Name validation: not empty or whitespace only
+    if (!name.trim()) {
+      newErrors.name = "Name is required"
+    }
+
     // Phone validation: exactly 10 digits
     const phoneRegex = /^\d{10}$/
     if (!phoneRegex.test(phone)) {
@@ -146,8 +151,13 @@ export default function Contact({ seoDisabled = false }) {
         }),
       })
 
+      // 1. Parse the JSON response immediately
+      const data = await response.json()
+
       if (response.ok) {
+        // Success Case
         setShowSuccessPopup(true)
+        // Clear form
         setName("")
         setPhone("")
         setEmail("")
@@ -156,7 +166,14 @@ export default function Contact({ seoDisabled = false }) {
         setMessage("")
         setErrors({})
       } else {
-        alert("Something went wrong. Please try again.")
+        // Error Case - Handle specific status codes
+        if (response.status === 409) {
+          // This captures your backend message: "you have already sent a message..."
+          alert(data.message)
+        } else {
+          // Fallback for 500 or 400 errors
+          alert(data.message || "Something went wrong. Please try again.")
+        }
       }
     } catch (error) {
       console.error("Error submitting form:", error)
@@ -300,8 +317,21 @@ export default function Contact({ seoDisabled = false }) {
               Request a Call Back
             </h2>
 
-            <form className="space-y-6">
-              <input className={inputBase} name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name *" required />
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <input
+                  className={`${inputBase} ${errors.name ? 'border-red-500 focus:border-red-500 focus:ring-red-500/60' : ''}`}
+                  name="name"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value)
+                    if (errors.name) setErrors({ ...errors, name: null })
+                  }}
+                  placeholder="Full Name *"
+                  required
+                />
+                {errors.name && <p className="text-red-500 text-xs mt-1 ml-1">{errors.name}</p>}
+              </div>
               <div>
                 <input
                   className={`${inputBase} ${errors.phone ? 'border-red-500 focus:border-red-500 focus:ring-red-500/60' : ''}`}
@@ -360,7 +390,6 @@ export default function Contact({ seoDisabled = false }) {
               <div className="flex justify-center">
                 <Button
                   type="submit"
-                  onClick={handleSubmit}
                   disabled={isSubmitting}
                   className={`w-52 justify-items-center text-white font-semibold rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 cursor-pointer ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                 >
