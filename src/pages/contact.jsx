@@ -207,12 +207,12 @@ export default function Contact({ seoDisabled = false }) {
           HARMONIX MUSICALS
         </span>
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mt-3">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mt-3">
           Start Your{" "}
           <span className="bg-gradient-to-r from-gray-300 via-gray-400 to-gray-500 bg-clip-text text-transparent">
             Music Journey
           </span>
-        </h1>
+        </h2>
 
 
 

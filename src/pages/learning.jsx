@@ -74,12 +74,12 @@ export default function Learning({ seoDisabled = false }) {
                             <span className="text-xs font-bold tracking-[0.15em] text-slate-500 uppercase">Our Programs</span>
                         </div>
 
-                        <h1 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4 leading-tight">
+                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight mb-4 leading-tight">
                             Discover Your{" "}
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600">
                                 Musical Path
                             </span>
-                        </h1>
+                        </h2>
 
                         <p className="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
                             Choose your instrument and begin your musical journey with structured lessons, expert guidance, and a supportive community.
