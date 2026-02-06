@@ -201,7 +201,7 @@ export default function Contact({ seoDisabled = false }) {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-10 md:mb-14"
+        className="text-center mb-6 md:mb-8"
       >
         <span className="text-xs font-semibold tracking-widest text-gray-300">
           HARMONIX MUSICALS

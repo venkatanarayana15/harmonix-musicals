@@ -23,7 +23,7 @@ export default function GalleryPreview() {
     }, [])
 
     return (
-        <section className="py-12 md:py-10 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
+        <section className="py-6 md:py-6 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-slate-50">
             <div className="max-w-5xl mx-auto">
                 {/* Header */}
                 <motion.div
@@ -52,7 +52,7 @@ export default function GalleryPreview() {
                 {/* Mobile: Stacked Cards | Desktop: 3D Carousel */}
 
                 {/* Mobile Stacked Cards */}
-                <div className="relative h-72 mb-8 md:hidden">
+                <div className="relative h-72 mb-4 md:hidden">
                     {galleryImages.map((img, index) => {
                         const position = (index - activeIndex + galleryImages.length) % galleryImages.length
                         const isActive = position === 0
@@ -160,7 +160,7 @@ export default function GalleryPreview() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="flex justify-center gap-12 md:gap-20 pt-6 border-t border-slate-100"
+                    className="flex justify-center gap-12 md:gap-20 pt-4 border-t border-slate-100"
                 >
                     <div className="text-center">
                         <p className="text-2xl md:text-3xl font-bold text-slate-900">50+</p>

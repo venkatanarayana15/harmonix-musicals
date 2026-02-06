@@ -241,59 +241,140 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ---------------- PROGRAMS PREVIEW ---------------- */}
+      {/* ---------------- WORLD-CLASS TRAINING SECTION ---------------- */}
       <section
         id="learning-preview"
-        className="pt-12 pb-4 md:pt-10 md:pb-6 px-4 relative"
+        className="pt-8 pb-8 md:pt-12 md:pb-12 px-4 relative overflow-hidden bg-linear-to-b from-violet-50/50 via-white to-sky-50/50"
       >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-3xl font-black mb-4">
-              World-Class <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">Training</span>
+        {/* Floating Music Notes Decoration */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-16 left-[10%] text-6xl text-violet-200/40 animate-bounce" style={{ animationDuration: '3s' }}>♪</div>
+          <div className="absolute top-32 right-[15%] text-4xl text-sky-200/50 animate-bounce" style={{ animationDuration: '2.5s', animationDelay: '0.5s' }}>♫</div>
+          <div className="absolute bottom-24 left-[20%] text-5xl text-rose-200/40 animate-bounce" style={{ animationDuration: '3.5s', animationDelay: '1s' }}>♬</div>
+          <div className="absolute bottom-40 right-[8%] text-3xl text-amber-200/50 animate-bounce" style={{ animationDuration: '2.8s', animationDelay: '0.3s' }}>♩</div>
+        </div>
+
+        <div className="max-w-6xl mx-auto relative z-10">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
+              World-Class{' '}
+              <span className="relative">
+                <span className="text-violet-600">Training</span>
+                <span className="absolute -bottom-1 left-0 w-full h-1 bg-linear-to-r from-violet-400 to-sky-400 rounded-full"></span>
+              </span>
             </h2>
-            <p className="text-gray-500 text-lg md:text-xl max-w-2xl mx-auto font-medium">
-              Comprehensive curriculum designed for modern musicians.
+            <p className="text-gray-500 text-base md:text-lg max-w-xl mx-auto">
+              Learn from expert musicians with personalized curriculum
             </p>
+          </motion.div>
+
+          {/* Instrument Cards - Clean Light Design */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {instruments.map((item, index) => {
+              const lightColors = [
+                'bg-orange-50 border-orange-200/60 hover:border-orange-300',
+                'bg-sky-50 border-sky-200/60 hover:border-sky-300',
+                'bg-emerald-50 border-emerald-200/60 hover:border-emerald-300',
+                'bg-violet-50 border-violet-200/60 hover:border-violet-300'
+              ];
+              const iconBgColors = [
+                'bg-orange-100 text-orange-500',
+                'bg-sky-100 text-sky-500',
+                'bg-emerald-100 text-emerald-500',
+                'bg-violet-100 text-violet-500'
+              ];
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                >
+                  <div
+                    onClick={() => scrollToSection("learning")}
+                    className={`
+                      group cursor-pointer h-full p-5 md:p-6 rounded-2xl border-2
+                      ${lightColors[index]}
+                      transition-all duration-300 hover:shadow-lg hover:-translate-y-1
+                    `}
+                  >
+                    {/* Icon */}
+                    <div className={`
+                      w-12 h-12 md:w-14 md:h-14 rounded-xl ${iconBgColors[index]}
+                      flex items-center justify-center text-xl md:text-2xl mb-4
+                      group-hover:scale-110 transition-transform duration-300
+                    `}>
+                      {item.icon}
+                    </div>
+
+                    {/* Title & Description */}
+                    <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-1">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-3 leading-relaxed">
+                      {item.desc}
+                    </p>
+
+                    {/* Level Pills */}
+                    <div className="flex flex-wrap gap-1.5">
+                      {item.levels.map((level, idx) => (
+                        <span
+                          key={idx}
+                          className="text-[10px] font-semibold uppercase tracking-wide px-2.5 py-1 
+                            rounded-full bg-white/80 text-gray-600 border border-gray-200/80"
+                        >
+                          {level}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {instruments.map((item, index) => (
-              <InstrumentCard
-                key={index}
-                item={item}
-                onClick={() => scrollToSection("learning")}
-              />
-            ))}
-          </div>
-
-          <div className="text-center mt-2">
+          {/* Bottom CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="text-center mt-12"
+          >
             <Link to="/learning">
-              <button className="group inline-flex items-center gap-2 text-sm font-bold text-gray-500 hover:text-gray-900 transition-colors">
-                <span>VIEW FULL CURRICULUM</span>
-                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <button className="group inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-violet-200 text-violet-600 font-semibold rounded-full hover:bg-violet-50 hover:border-violet-300 transition-all duration-300">
+                <span>View All Programs</span>
+                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
               </button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
 
       {/* ---------------- CTA SECTION ---------------- */}
-      <section className="py-1 md:py-2 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-b from-transparent via-purple-50/20 to-transparent pointer-events-none" />
+      <section className="py-2 md:py-4 px-4 relative overflow-hidden">
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <div className="bg-linear-to-r from-purple-50 to-blue-50 border border-purple-100 rounded-2xl p-8 md:p-10">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 leading-tight text-slate-900">
+              Start Your <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-600 to-blue-600">Journey</span> Today
+            </h2>
+            <p className="text-slate-500 mb-8 max-w-xl mx-auto text-base leading-relaxed">
+              Experience the joy of music with a free demo session. No commitment required, just passion.
+            </p>
 
-        <div className="max-w-4xl mx-auto text-center relative z-10 bg-white/60 backdrop-blur-2xl p-8 md:p-4 rounded-[2.5rem] border border-white shadow-2xl shadow-purple-900/5">
-          <h2 className="text-3xl md:text-3xl font-black mb-6 leading-tight text-gray-900">
-            Start Your <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-600 to-pink-600">Journey</span> Today
-          </h2>
-          <p className="text-gray-600 mb-10 max-w-xl mx-auto text-lg leading-relaxed">
-            Experience the joy of music with a free demo session. No commitment required, just passion.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               size="lg"
-              className="w-full sm:w-auto text-base py-4 px-10 shadow-xl shadow-purple-600/20 cursor-pointer"
+              className="w-full sm:w-auto text-base py-4 px-10 cursor-pointer"
               onClick={() => window.open(CONTACT.whatsapp, '_blank')}
             >
               Get Started Now

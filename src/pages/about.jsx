@@ -127,7 +127,7 @@ export default function About({ seoDisabled = false }) {
         />
       )}
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-12 pb-16 overflow-hidden bg-slate-50">
+      <section className="relative pt-8 pb-10 overflow-hidden bg-slate-50">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center">
@@ -136,7 +136,7 @@ export default function About({ seoDisabled = false }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-100 shadow-sm mb-8 transition-transform hover:scale-105 duration-300 cursor-default">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-purple-100 shadow-sm mb-6 transition-transform hover:scale-105 duration-300 cursor-default">
               <span className="w-2 h-2 rounded-full bg-purple-600 animate-pulse shadow-[0_0_8px_rgba(147,51,234,0.5)]" />
               <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-slate-500 uppercase">Est. 2025</span>
             </div>
@@ -156,10 +156,10 @@ export default function About({ seoDisabled = false }) {
       </section>
 
       {/* --- MENTORS SECTION (MINIMAL AVATAR DESIGN) --- */}
-      <section className="py-20 bg-slate-50 relative overflow-hidden" id="mentors">
+      <section className="py-12 bg-slate-50 relative overflow-hidden" id="mentors">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           {/* Section Header */}
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -379,9 +379,9 @@ export default function About({ seoDisabled = false }) {
       </section>
 
       {/* --- CORE VALUES CAROUSEL --- */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-10 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-10">
+          <div className="text-center mb-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -468,10 +468,10 @@ export default function About({ seoDisabled = false }) {
       </section>
 
       {/* --- STUDIO GALLERY SECTION --- */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-4">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -505,7 +505,7 @@ export default function About({ seoDisabled = false }) {
           </div>
 
           {/* Carousel for all screens */}
-          <div className="relative max-w-4xl mx-auto">
+          <div className="relative max-w-2xl mx-auto">
             {/* Main Image */}
             <div className="overflow-hidden rounded-2xl md:rounded-3xl shadow-xl">
               <AnimatePresence mode="wait">
@@ -594,26 +594,25 @@ export default function About({ seoDisabled = false }) {
       </section>
 
       {/* --- CTA SECTION --- */}
-      <section className="relative py-12 bg-slate-500 text-white rounded-3xl overflow-hidden">
-        {/* Background Overlay with Gradient & Blur */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/60 to-indigo-400/60 backdrop-blur-md" />
+      <section className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-100 rounded-2xl p-8 md:p-10 text-center mx-4 md:mx-8 my-8">
+        <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">
+          Ready to start your journey?
+        </h2>
+        <p className="text-slate-500 mb-6 max-w-lg mx-auto">
+          Join a community that celebrates every note. Whether you are a beginner or an advanced player.
+        </p>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-white text-2xl md:text-4xl font-extrabold mb-4 tracking-tight leading-tight">
-            Ready to start your journey?
-          </h2>
-          <p className="text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto">
-            Join a community that celebrates every note. Whether you are a beginner or an advanced player.
-          </p>
+        <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          {/* Primary Button */}
+          <button className="group w-full sm:w-auto px-8 py-3 bg-gradient-to-b from-purple-500 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 active:scale-95 text-sm cursor-pointer flex items-center justify-center gap-2">
+            <span>Book a Free Trial</span>
+            <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={12} />
+          </button>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="w-full sm:w-auto px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-slate-100 transition-all active:scale-95 shadow-lg text-sm cursor-pointer">
-              Book a Free Trial
-            </button>
-            <button className="w-full sm:w-auto px-8 py-3 bg-slate-900 text-white font-bold rounded-full hover:bg-slate-800 transition-all active:scale-95 shadow-lg text-sm flex items-center justify-center gap-2 cursor-pointer border border-slate-700">
-              View Programs <FaArrowRight size={12} />
-            </button>
-          </div>
+          {/* Secondary Button */}
+          <button className="w-full sm:w-auto px-8 py-3 bg-white text-purple-600 font-semibold rounded-xl border border-purple-200 hover:border-purple-300 hover:bg-purple-50 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 text-sm cursor-pointer">
+            View Programs
+          </button>
         </div>
       </section>
 
