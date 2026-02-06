@@ -104,27 +104,20 @@ export default function Learning({ seoDisabled = false }) {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-center relative py-10 md:py-14 px-5 md:px-6 rounded-3xl overflow-hidden bg-slate-500 text-white"
+                className="bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-100 rounded-2xl p-8 md:p-10 text-center"
             >
-
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400/60 to-indigo-400/60 backdrop-blur-md" />
-                <div className="relative z-10">
-                    <h2 className="text-white text-2xl md:text-4xl font-bold mb-4 md:mb-6">
-                        Not sure which instrument to choose?
-                    </h2>
-                    <p className="text-gray-300 mb-6 md:mb-8 text-base md:text-lg max-w-xl mx-auto">
-                        Book a free consultation session with our experts and let us help you find your perfect match.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button
-                            size="lg"
-                            className="w-full sm:w-auto text-base py-4 px-10 shadow-xl shadow-purple-600/20 cursor-pointer"
-                            onClick={() => window.open(CONTACT.whatsapp, '_blank')}
-                        >
-                            Book Free Trial
-                        </Button>
-                    </div>
-                </div>
+                <h2 className="text-xl md:text-2xl font-bold text-slate-900 mb-2">
+                    Not sure which instrument to choose?
+                </h2>
+                <p className="text-slate-500 mb-6 max-w-lg mx-auto">
+                    Book a free consultation session with our experts and find your perfect match.
+                </p>
+                <button
+                    onClick={() => window.open(CONTACT.whatsapp, '_blank')}
+                    className="px-8 py-3 bg-gradient-to-b from-purple-500 to-purple-600 text-white font-semibold rounded-xl shadow-[6px_6px_12px_#c4b5fd,-6px_-6px_12px_#ffffff] hover:shadow-[4px_4px_8px_#c4b5fd,-4px_-4px_8px_#ffffff] active:shadow-[inset_3px_3px_6px_#7c3aed,inset_-3px_-3px_6px_#a78bfa] transition-all cursor-pointer"
+                >
+                    Book Free Trial
+                </button>
             </motion.div>
         </PageContainer>
     );
