@@ -3,6 +3,7 @@ import Navbar from "./components/layout/Navbar"
 import Footer from "./components/Footer"
 import Landing from "./pages/Landing"
 import Gallery from "./pages/gallery"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       </Routes>
 
       <Footer />
+       <SpeedInsights />
     </div>
   )
 }
