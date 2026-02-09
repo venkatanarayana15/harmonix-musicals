@@ -16,10 +16,11 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/gallery" element={<Gallery />} />
         {/* Add more routes here if needed in the future */}
+        <SpeedInsights />
       </Routes>
 
       <Footer />
-       <SpeedInsights />
+       
     </div>
   )
 }
