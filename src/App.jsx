@@ -3,7 +3,7 @@ import Navbar from "./components/layout/Navbar"
 import Footer from "./components/Footer"
 import Landing from "./pages/Landing"
 import Gallery from "./pages/gallery"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default function App() {
   return (
@@ -16,11 +16,11 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/gallery" element={<Gallery />} />
         {/* Add more routes here if needed in the future */}
-        <SpeedInsights />
+        
       </Routes>
 
       <Footer />
-       
+       <SpeedInsights />
     </div>
   )
 }
