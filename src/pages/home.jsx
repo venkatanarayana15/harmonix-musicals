@@ -4,10 +4,7 @@ import { motion } from "framer-motion"
 import {
   FaGuitar,
   FaMusic,
-  FaMicrophoneAlt,
-  FaUsers,
-  FaChalkboardTeacher,
-  FaCalendarAlt
+  FaMicrophoneAlt
 } from "react-icons/fa"
 import Button from "../components/ui/Button"
 import Card from "../components/ui/Card"
@@ -198,7 +195,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-3xl sm:text-4xl md:text-4xl lg:text-4xl font-black mb-6 leading-tight tracking-tight"
+            className="text-3xl sm:text-3xl md:text-3xl lg:text-3xl font-black mb-6 leading-tight tracking-tight"
           >
             <span className="block text-gray-900 mb-2 drop-shadow-sm">Find Your</span>
             <span className="bg-clip-text text-transparent bg-linear-to-r from-purple-600 via-blue-600 to-purple-600 animate-gradient-x bg-size-[200%_auto]">
