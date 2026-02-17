@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { FaMusic, FaUsers, FaHeart, FaStar, FaQuoteLeft, FaArrowRight, FaChevronDown, FaChevronUp, FaTimes, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import PageContainer from "../components/layout/PageContainer";
 import SEO from "../components/SEO";
+import BookingModal from "../components/sections/BookingModal";
 
 const MENTORS_API = import.meta.env.VITE_MENTOR_API;
 
@@ -13,6 +14,15 @@ export default function About({ seoDisabled = false }) {
   const [currentValueIndex, setCurrentValueIndex] = useState(0);
   const [currentStudioIndex, setCurrentStudioIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const y = el.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   // Check screen size for responsive mentor display
   useEffect(() => {
@@ -604,17 +614,22 @@ export default function About({ seoDisabled = false }) {
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
           {/* Primary Button */}
-          <button className="group w-full sm:w-auto px-8 py-3 bg-gradient-to-b from-purple-500 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 active:scale-95 text-sm cursor-pointer flex items-center justify-center gap-2">
+          <button
+            onClick={() => setIsBookingModalOpen(true)}
+            className="group w-full sm:w-auto px-8 py-3 bg-gradient-to-b from-purple-500 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 active:scale-95 text-sm cursor-pointer flex items-center justify-center gap-2"
+          >
             <span>Book a Free Trial</span>
             <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" size={12} />
           </button>
 
-          {/* Secondary Button */}
-          <button className="w-full sm:w-auto px-8 py-3 bg-white text-purple-600 font-semibold rounded-xl border border-purple-200 hover:border-purple-300 hover:bg-purple-50 hover:-translate-y-0.5 transition-all duration-300 active:scale-95 text-sm cursor-pointer">
-            View Programs
-          </button>
         </div>
       </section>
+
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
 
 
     </PageContainer >

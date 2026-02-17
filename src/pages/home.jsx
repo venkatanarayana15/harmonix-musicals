@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react"
+import React, { useCallback, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { motion } from "framer-motion"
 import {
@@ -9,6 +9,7 @@ import {
 import Button from "../components/ui/Button"
 import Card from "../components/ui/Card"
 import { CONTACT } from "../components/constant/contact"
+import BookingModal from "../components/sections/BookingModal"
 
 // --- Instruments Data with refined colors ---
 const instruments = [
@@ -125,6 +126,7 @@ const StatCard = ({ stat }) => (
 /* -------------------- Main Home Page -------------------- */
 export default function Home() {
   const heroRef = useRef(null)
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
 
   const scrollToSection = useCallback((id) => {
     const el = document.getElementById(id)
@@ -194,7 +196,7 @@ export default function Home() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
             className="text-3xl sm:text-3xl md:text-3xl lg:text-3xl font-black mb-6 leading-tight tracking-tight"
           >
             <span className="block text-gray-900 mb-2 drop-shadow-sm">Find Your</span>
@@ -206,7 +208,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
+            transition={{ delay: 0.1 }}
             className="text-gray-600 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed font-medium"
           >
             Chennai's premier destination for professional music education. Join a community of passionate musicians.
@@ -216,13 +218,13 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
             className="flex flex-col sm:flex-row w-full max-w-md gap-4 justify-center mx-auto mt-0 md:-mt-5"
           >
             <Button
               size="lg"
               className="w-full shadow-xl shadow-purple-300/20 cursor-pointer"
-              onClick={() => scrollToSection("learning-preview")}
+              onClick={() => scrollToSection("learning")}
             >
               Explore Programs
             </Button>
@@ -230,7 +232,7 @@ export default function Home() {
               size="lg"
               variant="outline"
               className="w-full bg-white/50 backdrop-blur-sm border-2 cursor-pointer"
-              onClick={() => scrollToSection("contact")}
+              onClick={() => setIsBookingModalOpen(true)}
             >
               Book Free Demo
             </Button>
@@ -240,7 +242,7 @@ export default function Home() {
 
       {/* ---------------- WORLD-CLASS TRAINING SECTION ---------------- */}
       <section
-        id="learning-preview"
+        id="programs"
         className="pt-8 pb-8 md:pt-12 md:pb-12 px-4 relative overflow-hidden bg-linear-to-b from-violet-50/50 via-white to-sky-50/50"
       >
         {/* Floating Music Notes Decoration */}
@@ -263,7 +265,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
               World-Class{' '}
               <span className="relative">
-                <span className="text-violet-600">Training</span>
+                <span className="text-violet-600">Programs</span>
                 <span className="absolute -bottom-1 left-0 w-full h-1 bg-linear-to-r from-violet-400 to-sky-400 rounded-full"></span>
               </span>
             </h2>
@@ -297,7 +299,7 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: index * 0.08 }}
                 >
                   <div
-                    onClick={() => scrollToSection("learning")}
+                    onClick={() => scrollToSection("programs")}
                     className={`
                       group cursor-pointer h-full p-5 md:p-6 rounded-2xl border-2
                       ${lightColors[index]}
@@ -379,6 +381,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={isBookingModalOpen}
+        onClose={() => setIsBookingModalOpen(false)}
+      />
     </div>
   )
 }

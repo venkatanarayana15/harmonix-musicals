@@ -329,6 +329,8 @@ export default function Contact({ seoDisabled = false }) {
                   }}
                   placeholder="Full Name *"
                   required
+                  maxLength={15}
+                  minLength={3}
                 />
                 {errors.name && <p className="text-red-500 text-xs mt-1 ml-1">{errors.name}</p>}
               </div>
