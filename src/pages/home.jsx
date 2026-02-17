@@ -168,9 +168,8 @@ export default function Home() {
 
           {/* Logo with Glow */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            fetchPriority="high"
+
             className="mb-8 relative group"
           >
             <div className="absolute inset-0 bg-linear-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
@@ -222,7 +221,7 @@ export default function Home() {
           >
             <Button
               size="lg"
-              className="w-full shadow-xl shadow-purple-500/30 cursor-pointer bg-linear-to-r from-purple-400 via-blue-400 to-purple-400 animate-gradient-x text-white border-none"
+              className="w-full shadow-xl shadow-purple-500/30 cursor-pointer bg-linear-to-r from-purple-600  animate-gradient-x text-white border-none"
               onClick={() => scrollToSection("learning")}
             >
               Explore Programs
