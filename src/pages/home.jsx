@@ -223,7 +223,7 @@ export default function Home() {
           >
             <Button
               size="lg"
-              className="w-full shadow-xl shadow-purple-300/20 cursor-pointer"
+              className="w-full shadow-xl shadow-purple-500/30 cursor-pointer bg-linear-to-r from-purple-400 via-blue-400 to-purple-400 animate-gradient-x text-white border-none"
               onClick={() => scrollToSection("learning")}
             >
               Explore Programs
