@@ -205,14 +205,13 @@ export default function Home() {
             </span>
           </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-600 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed font-medium"
+
+          <p
+            className="text-gray-600 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed font-medium font-serif"
           >
             Chennai's premier destination for professional music education. Join a community of passionate musicians.
-          </motion.p>
+          </p>
+
 
           {/* CTA Buttons */}
           <motion.div
