@@ -194,7 +194,7 @@ const Navbar = () => {
                 <button
                   key={link.id}
                   onClick={() => handleNavigation(link.id)}
-                  className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ease-out
+                  className={`relative flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-300 ease-out cursor-pointer
                                             ${activeSection === link.id
                       ? "text-gray-900"
                       : "text-gray-500 hover:text-gray-900 hover:bg-white/50"
@@ -215,14 +215,15 @@ const Navbar = () => {
 
             {/* DESKTOP CTA */}
             <Button
-              onClick={() => handleNavigation("contact")}
+              o onClick={() => window.open(CONTACT.whatsapp, '_blank')}
               variant="primary"
               size="md"
+              className="cursor-pointer"
             >
               Join Now
             </Button>
           </div>
-        </nav>
+        </nav> 
       </header>
     )
   }

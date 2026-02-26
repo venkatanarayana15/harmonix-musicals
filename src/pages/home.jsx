@@ -221,7 +221,7 @@ export default function Home() {
           >
             <Button
               size="lg"
-              className="w-full shadow-xl shadow-purple-500/30 cursor-pointer bg-linear-to-r from-purple-600  animate-gradient-x text-white border-none"
+              className="w-full shadow-xl shadow-purple-500/30 cursor-pointer bg-linear-to-r from-purple-600 animate-gradient-x text-white border-none"
               onClick={() => scrollToSection("learning")}
             >
               Explore Programs

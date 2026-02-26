@@ -231,7 +231,7 @@ export default function BookingModal({ isOpen, onClose }) {
                                 <div className="flex flex-col h-full">
                                     {/* Header - Compact */}
                                     <div className="px-6 pt-6 pb-4 bg-linear-to-br from-violet-50 to-white border-b border-gray-100">
-                                        <h2 className="text-xl font-bold text-gray-900 mb-1">
+                                        <h2 className="text-xl font-bold text-gray-900 mb-1 ">
                                             Book <span className="text-violet-600">Free Demo</span>
                                         </h2>
                                         <p className="text-xs text-gray-500">
@@ -324,11 +324,11 @@ export default function BookingModal({ isOpen, onClose }) {
                                     </div>
 
                                     {/* Footer - Compact */}
-                                    <div className="px-6 pb-6 pt-2 bg-white flex flex-col gap-3">
+                                    <div className="px-6 pb-6 pt-2 bg-white flex flex-col gap-3 ">
                                         <Button
                                             onClick={handleSubmit}
                                             disabled={isSubmitting}
-                                            className={`w-full py-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white shadow-md shadow-violet-200 text-sm ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                                            className={`cursor-pointer w-full py-2.5 rounded-lg bg-violet-600 hover:bg-violet-700 text-white shadow-md shadow-violet-200 text-sm ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                                         >
                                             {isSubmitting ? "Sending..." : "Book Free Demo"}
                                         </Button>
