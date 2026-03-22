@@ -30,28 +30,28 @@ const contactInfo = [
     title: "Call",
     link: CONTACT.phone.startsWith("+") ? `tel:${CONTACT.phone}` : `tel:+91${CONTACT.phone}`,
     color: "text-red-600",
-    bgColor: "bg-red-100",
+    bgColor: "bg-red-50",
   },
   {
     icon: <FaWhatsapp />,
     title: "WhatsApp",
     link: CONTACT.whatsapp,
     color: "text-green-600",
-    bgColor: "bg-green-100",
+    bgColor: "bg-green-50",
   },
   {
     icon: <FaEnvelope />,
     title: "Email",
     link: CONTACT.email.startsWith("http") ? CONTACT.email : `mailto:${CONTACT.email}`,
     color: "text-blue-600",
-    bgColor: "bg-blue-100",
+    bgColor: "bg-blue-50",
   },
   {
     icon: <FaMapMarkerAlt />,
     title: "Visit",
     link: CONTACT.location,
     color: "text-orange-600",
-    bgColor: "bg-orange-100",
+    bgColor: "bg-orange-50",
   },
 ]
 

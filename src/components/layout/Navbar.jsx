@@ -175,16 +175,15 @@ const Navbar = () => {
               className="flex items-center gap-3 cursor-pointer group"
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-gray-900 blur-lg opacity-20 group-hover:opacity-40 transition-opacity" />
                 <img
                   src="/logo.png"
                   alt="Harmonix Musicals"
-                  className="relative w-12 h-12 rounded-3xl object-cover border border-white/20 shadow-lg"
+                  className="relative w-12 h-12 rounded-3xl object-cover"
                 />
               </div>
               <div>
-                <div className="text-lg font-bold font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">HARMONIX</div>
-                <div className="text-[15px] font-serif italic font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-800 to-blue-600 drop-shadow-sm relative z-20">Musicals</div>
+                <div className="text-lg font-bold font-serif font-bold text-gray-900 drop-shadow-sm relative z-20">HARMONIX</div>
+                <div className="text-[15px] font-serif font-bold text-gray-900 drop-shadow-sm relative z-20">Musicals</div>
               </div>
             </div>
 

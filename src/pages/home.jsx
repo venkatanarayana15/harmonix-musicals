@@ -14,7 +14,9 @@ import BookingModal from "../components/sections/BookingModal"
 // --- Instruments Data with refined colors ---
 const instruments = [
   {
-    icon: <FaGuitar />,
+    image: "/gall1.png",
+    imageFade: "to-[#ECDEC0]/90",
+    icon: <div>🎸</div>,
     title: "Guitar",
     desc: "Acoustic & Electric mastery",
     levels: ["Beginner", "Pro"],
@@ -22,15 +24,19 @@ const instruments = [
     shadow: "shadow-orange-500/30"
   },
   {
-    icon: <FaMusic />,
+    image: "/gall6.jpeg",
+    imageFade: "to-[#EDE8DF]/98",
+    imagePosition: "object-center",
+    icon: <div>🎹</div>,
     title: "Piano",
     desc: "Classical to Modern Keys",
     levels: ["All Ages", "Expert"],
-    color: "from-blue-400 to-indigo-500",
-    shadow: "shadow-blue-500/30"
+    shadow: "shadow-stone-500/30"
   },
   {
-    icon: <div className="font-serif italic text-2xl">Violin</div>,
+    image: "/gall3.png",
+    imageFade: "to-orange-50/95",
+    icon: <div className="font-serif italic text-2xl">🎻</div>,
     title: "Violin",
     desc: "Traditional & Western",
     levels: ["Suzuki", "Grade"],
@@ -38,7 +44,9 @@ const instruments = [
     shadow: "shadow-emerald-500/30"
   },
   {
-    icon: <FaMicrophoneAlt />,
+    image: "/gall4.png",
+    imageFade: "to-slate-100/95",
+    icon: <div>🎤</div>,
     title: "Vocal",
     desc: "Find Your Unique Voice",
     levels: ["Voice", "Stage"],
@@ -172,8 +180,8 @@ export default function Home() {
 
             className="mb-8 relative group"
           >
-            <div className="absolute inset-0 bg-linear-to-r from-purple-600 to-blue-600 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
-            <div className="relative w-34 h-34 md:w-32 md:h-32 mx-auto rounded-full p-1 bg-linear-to-br from-white to-gray-200 shadow-2xl mt-4 md:mt-3">
+            <div className="absolute inset-0 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-500" />
+            <div className="relative w-34 h-34 md:w-32 md:h-32 mx-auto rounded-full p-1 mt-4 md:mt-3">
               <img src="/logo.png" alt="Harmonix home Logo" title="start image" className="w-full h-full rounded-full object-cover border-2 border-white" />
             </div>
           </motion.div>
@@ -198,9 +206,9 @@ export default function Home() {
             transition={{ duration: 0.4, delay: 0.2 }}
             className="text-3xl sm:text-3xl md:text-3xl lg:text-3xl font-black mb-6 leading-tight tracking-tight"
           >
-            <span className="block text-gray-900 mb-2 drop-shadow-sm">Find Your</span>
-            <span className="bg-clip-text text-transparent bg-linear-to-r from-purple-600 via-blue-600 to-purple-600 animate-gradient-x bg-size-[200%_auto]">
-              Rhythm & Soul
+            <span className="block text-gray-900 mb-2 drop-shadow-sm font-serif">Classique with</span>
+            <span className="bg-clip-text text-gray-900 animate-gradient-x bg-size-[200%_auto] font-serif">
+              Harmonix
             </span>
           </motion.h1>
 
@@ -208,7 +216,7 @@ export default function Home() {
           <p
             className="text-gray-600 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed font-medium font-serif"
           >
-            Chennai's premier destination for professional music education. Join a community of passionate musicians.
+            Place where passion ignites learning and excellence resonates.
           </p>
 
 
@@ -221,7 +229,8 @@ export default function Home() {
           >
             <Button
               size="lg"
-              className="w-full shadow-xl shadow-purple-500/30 cursor-pointer bg-linear-to-r from-purple-600 animate-gradient-x text-white border-none"
+              variant="outline"
+              className="w-full bg-white/50 backdrop-blur-sm border-2 cursor-pointer"
               onClick={() => scrollToSection("learning")}
             >
               Explore Programs
@@ -276,62 +285,94 @@ export default function Home() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {instruments.map((item, index) => {
               const lightColors = [
-                'bg-orange-50 border-orange-200/60 hover:border-orange-300',
-                'bg-sky-50 border-sky-200/60 hover:border-sky-300',
-                'bg-emerald-50 border-emerald-200/60 hover:border-emerald-300',
-                'bg-violet-50 border-violet-200/60 hover:border-violet-300'
-              ];
-              const iconBgColors = [
-                'bg-orange-100 text-orange-500',
-                'bg-sky-100 text-sky-500',
-                'bg-emerald-100 text-emerald-500',
-                'bg-violet-100 text-violet-500'
+                // 🎸 Guitar: Warm Beige (matching image background)
+                'bg-[#ECDEC0]/90 border-[#D4C3A3] hover:border-[#BFAF89]',
+                // 🎹 Piano: Warm Linen / Walnut
+                'bg-[#EDE8DF]/90 border-[#C8B89A] hover:border-[#8B6545]',
+                // 🎻 Violin: Varnished Wood (Amber/Orange-Brown)
+                'bg-orange-50/90 border-orange-900/30 hover:border-orange-900/60',
+                // 🎙️ Vocal (Microphone): Metallic Silver / Steel
+                'bg-slate-100/90 border-slate-400/40 hover:border-slate-500/70'
               ];
 
+              const iconBgColors = [
+                // 🎸 Dark Sunburst Wood
+                'bg-[#4A200B] text-[#DDA54B]',
+                // 🎹 Polished Walnut & Ivory
+                'bg-[#4A2C0A] text-[#F5ECD7]',
+                // 🎻 Varnished Wood
+                'bg-orange-900 text-orange-50',
+                // 🎙️ Metallic Charcoal / Silver
+                'bg-slate-600 text-slate-50'
+              ];
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.08 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="h-full"
                 >
                   <div
                     onClick={() => scrollToSection("programs")}
                     className={`
-                      group cursor-pointer h-full p-5 md:p-6 rounded-2xl border-2
+                      relative overflow-hidden
+                      group h-full rounded-3xl border
                       ${lightColors[index]}
-                      transition-all duration-300 hover:shadow-lg hover:-translate-y-1
+                      transition-all duration-300
+                      hover:shadow-[0_20px_60px_-10px_rgba(0,0,0,0.18)]
+                      hover:-translate-y-2
                     `}
                   >
-                    {/* Icon */}
-                    <div className={`
-                      w-12 h-12 md:w-14 md:h-14 rounded-xl ${iconBgColors[index]}
-                      flex items-center justify-center text-xl md:text-2xl mb-4
-                      group-hover:scale-110 transition-transform duration-300
-                    `}>
-                      {item.icon}
+                    {/* Image with title overlay */}
+                    <div className="relative w-full h-44 md:h-52 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className={`w-full h-full object-cover group-hover:scale-107 transition-transform duration-700 ease-out ${item.imagePosition || 'object-center'}`}
+                      />
+
+                      {/* Subtle dark vignette at bottom edge only */}
+                      <div className="absolute inset-0 bg-linear-to-t from-black/30 to-transparent" />
                     </div>
 
-                    {/* Title & Description */}
-                    <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-500 mb-3 leading-relaxed">
-                      {item.desc}
-                    </p>
+                    {/* Gradient fade strip */}
+                    <div className={`h-2 w-full bg-linear-to-b ${item.imageFade} opacity-80`} />
 
-                    {/* Level Pills */}
-                    <div className="flex flex-wrap gap-1.5">
-                      {item.levels.map((level, idx) => (
-                        <span
-                          key={idx}
-                          className="text-[10px] font-semibold uppercase tracking-wide px-2.5 py-1 
-                            rounded-full bg-white/80 text-gray-600 border border-gray-200/80"
-                        >
-                          {level}
-                        </span>
-                      ))}
+                    {/* Content body */}
+                    <div className="p-4 flex flex-col gap-3">
+                      {/* Title & desc */}
+                      <div>
+                        <h3 className="text-lg md:text-xl font-black text-gray-900 tracking-tight">
+                          {item.title}
+                        </h3>
+                        <p className="text-xs text-gray-500 font-medium mt-0.5 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+
+                      {/* Level pills */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {item.levels.map((level, idx) => (
+                          <span
+                            key={idx}
+                            className="text-[10px] font-bold uppercase tracking-widest px-3 py-1
+                              rounded-full bg-white/80 text-gray-600 border border-gray-200 shadow-xs backdrop-blur-sm"
+                          >
+                            {level}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Divider */}
+                      <div className="h-px w-full bg-gray-200/70" />
+
+                      {/* Explore row */}
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">Explore</span>
+                        <span className="text-gray-400 group-hover:text-gray-700 group-hover:translate-x-1 transition-all duration-300 text-base font-bold">→</span>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -347,12 +388,14 @@ export default function Home() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="text-center mt-12"
           >
-            <Link to="/learning">
-              <button className="group inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-violet-200 text-violet-600 font-semibold rounded-full hover:bg-violet-50 hover:border-violet-300 transition-all duration-300">
-                <span>View All Programs</span>
-                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-              </button>
-            </Link>
+
+            <button className="group inline-flex items-center gap-2 px-6 py-3 bg-white border-2 border-blue-200 text-blue-500 font-semibold rounded-full hover:bg-blue-50 hover:border-blue-300 transition-all duration-300 cursor-pointer"
+              onClick={() => scrollToSection("learning")}>
+              <span>View All Programs</span>
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+
+            </button>
+          
           </motion.div>
         </div>
       </section>
